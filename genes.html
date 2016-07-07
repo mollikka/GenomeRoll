@@ -5,11 +5,12 @@
   <title>Breeding Simulator 2016</title>
 </head>
 <body>
-  <h1>GENOROLLER FOR LIZARDS OR WHATEVER</h1>
+  <h1>GENOME VALIDATOR</h1>
   <form>
     <h2>Genome</h2>
       <input type=text id="genes_input">
       <h3>Recognized genes</h3>
+      <p>Type a genome and see if I can recognize it. "nn" genes are just ignored so leave them out if you like<br></p>
       <ul id="genes_output"></ul>
   </form>
   <script>
@@ -130,16 +131,21 @@
       genes_output.innerHTML = "";
       var genome = str_to_genome(genes_input.value);
       if (genome === null) {
+        genes_output.innerHTML = "<li>Not valid genome</li>";
         return;
       }
       console.log(genome);
-      for (var key in genome) {
+      for (var i=0; i<re_genes.length; i++) {
+        var gene_template = re_genes[i];
+        var gene_name = gene_template[0];
+        console.log(gene_name);
+        if (!(gene_name in genome)) continue;
         genes_output.innerHTML += "<li>";
-        genes_output.innerHTML += key;
+        genes_output.innerHTML += gene_name;
         genes_output.innerHTML += " - ";
-        genes_output.innerHTML += genome[key][0];
+        genes_output.innerHTML += genome[gene_name][0];
         genes_output.innerHTML += ",";
-        genes_output.innerHTML += genome[key][1];
+        genes_output.innerHTML += genome[gene_name][1];
         genes_output.innerHTML += "</li>";
       }
     }
