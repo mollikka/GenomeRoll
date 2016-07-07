@@ -45,24 +45,43 @@
       return [gene_name, gene_left, gene_right];
     }
 
+    function verify_required(genome) {
+      for (var i=0; i<re_genes.length; i++) {
+        var gene_template = re_genes[i];
+        var gene_required = gene_template[2];
+        var gene_name = gene_template[0];
+        if (gene_required && !(gene_name in genome)) {
+          return false;
+        }
+      }
+      return true;
+    }
+
     function str_to_genome(str) {
       var genome = {};
-      console.log("PARSING A GENOME")
-      var re_geneseparator = /[ ;]+/;
+      var re_geneseparator = / nn |[ ]+/;
 
-      var genelist = str.trim().split(re_geneseparator);
+      var genelist = str.split(re_geneseparator);
       for (var i=0; i<genelist.length; i++) {
         var genestr = genelist[i];
+        if (genestr === "") continue; //first or last might be empty because of splitting
         var gene = str_to_gene(genestr);
         if (gene === null) {
           /*there's an unrecognized gene*/
+          console.log("FAILED TO IDENTIFY A GENE");
           return null;
         } else if (gene[0] in genome) {
           /*duplicate gene definition*/
+          console.log("A GENE WAS DEFINED TWICE");
           return null;
         } else {
           genome[gene[0]] = [gene[1], gene[2]];
         }
+      }
+      if (!verify_required(genome)) {
+        /*a required gene is missing*/
+        console.log("REQUIRED GENE MISSING");
+        return null
       }
       return genome;
     }
