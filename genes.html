@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Breeding Simulator 2016</title>
+</head>
+<body>
+  <h1>GENOROLLER FOR LIZARDS OR WHATEVER</h1>
+  <form>
+    <h2>Genes</h2>
+      <input type=text id="genes_input">
+      <h3>Recognized genes</h3>
+      <ul id="genes_output"></ul>
+  </form>
+  <script>
+    var genes_input = document.getElementById("genes_input");
+    var genes_output = document.getElementById("genes_output");
+
+    var re_genes = [
+      /*gene name; regex*/
+      ["Extension", new RegExp("^(E|e)(E|e)$")],
+      ["Agouti", new RegExp("^(A|a)(A|a)$")],
+      ["O_gene", new RegExp("^(n|O|Od)(n|O|Od)$")],
+    ]
+    function str_to_gene(str) {
+      var gene_name, gene;
+
+      /*go through known genes to see if one of them
+       matches with input*/
+      for (var i=0; i<re_genes.length; i++) {
+        gene_name = re_genes[i][0];
+        var re_gene = re_genes[i][1];
+        gene = str.match(re_gene);
+        if (gene !== null)
+          break;
+      }
+
+      if (gene === null) {
+        /*failed to identify the gene*/
+        return null;
+      }
+
+      gene_left = gene[1];
+      gene_right = gene[2];
+      return [gene_name, gene_left, gene_right];
+    }
+
+    function str_to_genome(str) {
+      var genome = {};
+      console.log("PARSING A GENOME")
+      var re_geneseparator = /[ ;]+/;
+
+      var genelist = str.trim().split(re_geneseparator);
+      for (var i=0; i<genelist.length; i++) {
+        var genestr = genelist[i];
+        var gene = str_to_gene(genestr);
+        if (gene === null) {
+          /*there's an unrecognized gene*/
+          return null;
+        } else if (gene[0] in genome) {
+          /*duplicate gene definition*/
+          return null;
+        } else {
+          genome[gene[0]] = [gene[1], gene[2]];
+        }
+      }
+      return genome;
+    }
+
+    genes_input.oninput = function() {
+      genes_output.innerHTML = "";
+      var genome = str_to_genome(genes_input.value);
+      if (genome === null) {
+        return;
+      }
+      console.log(genome);
+      for (var key in genome) {
+        genes_output.innerHTML += "<li>";
+        genes_output.innerHTML += key;
+        genes_output.innerHTML += " - ";
+        genes_output.innerHTML += genome[key][0];
+        genes_output.innerHTML += ",";
+        genes_output.innerHTML += genome[key][1];
+        genes_output.innerHTML += "</li>";
+      }
+    }
+  </script>
+</body>
+</html>
