@@ -17,6 +17,8 @@
     var genes_input = document.getElementById("genes_input");
     var genes_output = document.getElementById("genes_output");
 
+    var empty_pair = "nn"
+
     var re_genes = [
       /*OUTPUT WILL BE IN THIS ORDER
         gene: gene name, regex, required*/
@@ -100,12 +102,13 @@
 
     function str_to_genome(str) {
       var genome = {};
-      var re_geneseparator = / nn |[ ]+/;
+      var re_geneseparator = /[ ]+/;
 
       var genelist = str.split(re_geneseparator);
       for (var i=0; i<genelist.length; i++) {
         var genestr = genelist[i];
         if (genestr === "") continue; //first or last might be empty because of splitting
+        if (genestr === empty_pair) continue; //explicitly ignore empty pairs
         var gene = str_to_gene(genestr);
         if (gene === null) {
           /*there's an unrecognized gene*/
