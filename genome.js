@@ -74,7 +74,7 @@ function str_to_genome(str, re_genes) {
   if (!verify_required(re_genes, genome)) {
     /*a required gene is missing*/
     console.log("REQUIRED GENE MISSING");
-    return null
+    return null;
   }
   console.log("GENOME PARSED SUCCESSFULLY");
   return genome;
