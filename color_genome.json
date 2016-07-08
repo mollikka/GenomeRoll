@@ -1,0 +1,131 @@
+{
+  "Extension": {
+    "required": true,
+    "genotypes": ["E","e"]},
+  "Agouti": {
+    "required": true,
+    "genotypes": ["A","Ay","Ad","At","a"]},
+  "C gene": {
+    "required": false,
+    "genotypes": ["n","C"]},
+  "B gene": {
+    "required": false,
+    "genotypes": ["n","B"]},
+  "Z gene": {
+    "required": false,
+    "genotypes": ["n","Z"]},
+  "D gene": {
+    "required": false,
+    "genotypes": ["n","D"]},
+  "Pearl": {
+    "required": false,
+    "genotypes": ["n","prl"]},
+  "X gene": {
+    "required": false,
+    "genotypes": ["n","X"]},
+  "Y gene": {
+    "required": false,
+    "genotypes": ["n","Y"]},
+  "O gene": {
+    "required": false,
+    "genotypes": ["n","O","Od"]},
+  "P gene": {
+    "required": false,
+    "genotypes": ["n","P"]},
+  "R gene": {
+    "required": false,
+    "genotypes": ["n","R","rs"]},
+  "Dty gene": {
+    "required": false,
+    "genotypes": ["n","Dty"]},
+  "Mnt gene": {
+    "required": false,
+    "genotypes": ["n","Mnt"]},
+  "V gene": {
+    "required": false,
+    "genotypes": ["n","V"]},
+  "Sph gene": {
+    "required": false,
+    "genotypes": ["n","Sph"]},
+  "U gene": {
+    "required": false,
+    "genotypes": ["n","U"]},
+  "f gene": {
+    "required": false,
+    "genotypes": ["n","f"]},
+  "Fr gene": {
+    "required": false,
+    "genotypes": ["n","Fr"]},
+  "Sk gene": {
+    "required": false,
+    "genotypes": ["n","Sk"]},
+  "Smr gene": {
+    "required": false,
+    "genotypes": ["n","Smr"]},
+  "M gene": {
+    "required": false,
+    "genotypes": ["n","M"]},
+  "Cp gene": {
+    "required": false,
+    "genotypes": ["n","Cp"]},
+  "Sdl gene": {
+    "required": false,
+    "genotypes": ["n","Sdl"]},
+  "Fwl gene": {
+    "required": false,
+    "genotypes": ["n","Fwl"]},
+  "G gene": {
+    "required": false,
+    "genotypes": ["n","G"]},
+  "Kd gene": {
+    "required": false,
+    "genotypes": ["n","Kd"]},
+  "Q gene": {
+    "required": false,
+    "genotypes": ["n","Q","q"]},
+  "P weird": {
+    "required": false,
+    "genotypes": ["n","Pm","Pp","Pc"]},
+  "wlf gene": {
+    "required": false,
+    "genotypes": ["n","wlf"]},
+  "Ld gene": {
+    "required": false,
+    "genotypes": ["n","Ld"]},
+  "Ink gene": {
+    "required": false,
+    "genotypes": ["n","Ink"]},
+  "Crc gene": {
+    "required": false,
+    "genotypes": ["n","Crc"]},
+  "Bl gene": {
+    "required": false,
+    "genotypes": ["n","Bl"]},
+  "Cdr gene": {
+    "required": false,
+    "genotypes": ["n","Cdr"]},
+  "Fwn gene": {
+    "required": false,
+    "genotypes": ["n","Fwn"]},
+  "I gene": {
+    "required": false,
+    "genotypes": ["n","I"]},
+  "S something": {
+    "required": false,
+    "genotypes": ["n","Sp","Sb"]},
+  "T gene": {
+    "required": false,
+    "genotypes": ["n","T"]},
+  "W gene": {
+    "required": false,
+    "genotypes": ["n","W"]},
+  "Bd gene": {
+    "required": false,
+    "genotypes": ["n","Bd"]},
+  "Gvl gene": {
+    "required": false,
+    "genotypes": ["n","Gvl"]},
+  "N gene": {
+    "required": false,
+    "genotypes": ["n","N\\+","N\\-","No"]}
+}

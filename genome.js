@@ -1,69 +1,20 @@
-var empty_pair = "nn"
+var empty_pair = "nn";
 
-//the genome template
-var re_genes_color = [
-  /*OUTPUT WILL BE IN THIS ORDER
-    gene: gene name, regex, required*/
-  //genotype(color)(required)
-  ["Extension", new RegExp("^(E|e)(E|e)$"), true],
-  ["Agouti", new RegExp("^(A|Ay|Ad|At|a)(A|Ay|Ad|At|a)$"), true],
-  //genotype(color)(optional)
-  ["C gene", new RegExp("^(n|C)(n|C)$"), false],
-  ["B gene", new RegExp("^(n|B)(n|B)$"), false],
-  ["Z gene", new RegExp("^(n|Z)(n|Z)$"), false],
-  ["D gene", new RegExp("^(n|D)(n|D)$"), false],
-  ["Pearl", new RegExp("^(n|prl)(n|prl)$"), false],
-  ["X gene", new RegExp("^(n|X)(n|X)$"), false],
-  ["Y gene", new RegExp("^(n|Y)(n|Y)$"), false],
-  ["O gene", new RegExp("^(n|O|Od)(n|O|Od)$"), false],
-  ["P gene", new RegExp("^(n|P)(n|P)$"), false],
-  ["R gene", new RegExp("^(n|R|rs)(n|R|rs)$"), false],
-  ["Dty gene", new RegExp("^(n|Dty)(n|Dty)$"), false],
-  ["Mnt gene", new RegExp("^(n|Mnt)(n|Mnt)$"), false],
-  ["V gene", new RegExp("^(n|V)(n|V)$"), false],
-  ["Sph gene", new RegExp("^(n|Sph)(n|Sph)$"), false],
-  ["U gene", new RegExp("^(n|U)(n|U)$"), false],
-  ["f gene", new RegExp("^(n|f)(n|f)$"), false],
-  ["Fr gene", new RegExp("^(n|Fr)(n|Fr)$"), false],
-  ["Sk gene", new RegExp("^(n|Sk)(n|Sk)$"), false],
-  ["Smr gene", new RegExp("^(n|Smr)(n|Smr)$"), false],
-  ["M gene", new RegExp("^(n|M)(n|M)$"), false],
-  ["Cp gene", new RegExp("^(n|Cp)(n|Cp)$"), false],
-  ["Sdl gene", new RegExp("^(n|Sdl)(n|Sdl)$"), false],
-  ["Fwl gene", new RegExp("^(n|Fwl)(n|Fwl)$"), false],
-  ["G gene", new RegExp("^(n|G)(n|G)$"), false],
-  ["Kd gene", new RegExp("^(n|Kd)(n|Kd)$"), false],
-  ["Q gene", new RegExp("^(n|Q|q)(n|Q|q)$"), false],
-  ["P weird", new RegExp("^(n|Pm|Pp|Pc)(n|Pm|Pp|Pc)$"), false],
-  ["wlf gene", new RegExp("^(n|wlf)(n|wlf)$"), false],
-  ["Ld gene", new RegExp("^(n|Ld)(n|Ld)$"), false],
-  ["Ink gene", new RegExp("^(n|Ink)(n|Ink)$"), false],
-  ["Crc gene", new RegExp("^(n|Crc)(n|Crc)$"), false],
-  ["Bl gene", new RegExp("^(n|Bl)(n|Bl)$"), false],
-  ["Cdr gene", new RegExp("^(n|Cdr)(n|Cdr)$"), false],
-  ["Fwn gene", new RegExp("^(n|Fwn)(n|Fwn)$"), false],
-  ["I gene", new RegExp("^(n|I)(n|I)$"), false],
-  ["S something", new RegExp("^(n|Sp|Sb)(n|Sp|Sb)$"), false],
-  ["T gene", new RegExp("^(n|T)(n|T)$"), false],
-  ["W gene", new RegExp("^(n|W)(n|W)$"), false],
-  ["Bd gene", new RegExp("^(n|Bd)(n|Bd)$"), false],
-  ["Gvl gene", new RegExp("^(n|Gvl)(n|Gvl)$"), false],
-  ["N gene", new RegExp("^(n|N\\+|N\\-|No)(n|N\\+|N\\-|No)$"), false],
-];
-var re_genes_other = [
-  //genotype(other)(required)
-  ["Eye color B", new RegExp("^(B|b)(B|b)$"), true],
-  ["Eye color A", new RegExp("^(A|Ah|a)(A|Ah|a)$"), true],
-  ["Mane", new RegExp("^(Mn|Mkl|Ms|Mbr)(Mn|Mkl|Ms|Mbr)$"), true],
-  ["Fur", new RegExp("^(Tn|Ts|Tnc)(Tn|Ts|Tnc)$"), true],
-  ["Tail", new RegExp("^(Ls|Lh|Ll)(Ls|Lh|Ll)$"), true],
+function get_genome_template(jsondata) {
+  var data = jsondata;
+  var genome = [];
+  for (var key in data) {
+    var gene_name = key;
+    var genotypes = data[key].genotypes;
+    var gene_required = data[key].required;
+    var gene_string = genotypes.join("|");
+    var gene_regex = new RegExp("^("+gene_string+")("+gene_string+")$");
+    var gene = [gene_name, gene_regex, gene_required];
+    genome.push(gene);
+  }
+  return genome;
+}
 
-  //genotype(other)(optional)
-  ["alb", new RegExp("^(n|Alb)(n|Alb)$"), false],
-  ["brn", new RegExp("^(n|Brn)(n|Brn)$"), false],
-  ["mel", new RegExp("^(n|Mel)(n|Mel)$"), false],
-  ["som", new RegExp("^(n|Som)(n|Som)$"), false],
-]
 function str_to_gene(re_genes, re_genes_index, str) {
   var i = re_genes_index;
   var gene_name = re_genes[i][0];
