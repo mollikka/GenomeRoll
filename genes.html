@@ -7,11 +7,16 @@
 <body>
   <h1>GENOME VALIDATOR</h1>
   <form>
-    <h2>Genome</h2>
+    <h2>Genome (color)</h2>
       <input type=text id="genes_input_color">
       <h3>Recognized genes</h3>
-      <p>Type a genome and see if I can recognize it. Use the documented order. "nn" genes are just ignored so leave them out if you like.<br></p>
       <ul id="genes_output_color"></ul>
+  </form>
+  <form>
+    <h2>Genome (other)</h2>
+      <input type=text id="genes_input_other">
+      <h3>Recognized genes</h3>
+      <ul id="genes_output_other"></ul>
   </form>
   <script>
 
@@ -172,6 +177,11 @@
       var genome = str_to_genome(this.value, re_genes_color);
       var genes_output = document.getElementById("genes_output_color");
       display_genome(genome, genes_output, re_genes_color);
+    }
+    genes_input_other.oninput = function() {
+      var genome = str_to_genome(this.value, re_genes_other);
+      var genes_output = document.getElementById("genes_output_other");
+      display_genome(genome, genes_output, re_genes_other);
     }
   </script>
 </body>
