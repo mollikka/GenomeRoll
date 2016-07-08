@@ -10,7 +10,7 @@
     <h2>Genome</h2>
       <input type=text id="genes_input">
       <h3>Recognized genes</h3>
-      <p>Type a genome and see if I can recognize it. "nn" genes are just ignored so leave them out if you like<br></p>
+      <p>Type a genome and see if I can recognize it. Use the documented order. "nn" genes are just ignored so leave them out if you like.<br></p>
       <ul id="genes_output"></ul>
   </form>
   <script>
@@ -19,6 +19,7 @@
 
     var empty_pair = "nn"
 
+    //the genome template
     var re_genes = [
       /*OUTPUT WILL BE IN THIS ORDER
         gene: gene name, regex, required*/
@@ -65,19 +66,12 @@
       ["Gvl gene", new RegExp("^(n|Gvl)(n|Gvl)$"), false],
       ["N gene", new RegExp("^(n|N\\+|N\\-|No)(n|N\\+|N\\-|No)$"), false],
     ]
-    function str_to_gene(str) {
-      var gene_name, gene;
-
-      /*go through known genes to see if one of them
-       matches with input*/
-      for (var i=0; i<re_genes.length; i++) {
-        gene_name = re_genes[i][0];
-        var re_gene = re_genes[i][1];
-        gene = str.match(re_gene);
-        if (gene !== null)
-          break;
-      }
-
+    function str_to_gene(re_genes_index, str) {
+      var i = re_genes_index;
+      var gene_name = re_genes[i][0];
+      var re_gene = re_genes[i][1];
+      var gene = str.match(re_gene);
+      console.log("Testing if",str,"is",gene_name," - ",!(gene === null));
       if (gene === null) {
         /*failed to identify the gene*/
         return null;
@@ -101,22 +95,28 @@
     }
 
     function str_to_genome(str) {
+      console.log("PARSING GENOME",str);
       var genome = {};
       var re_geneseparator = /[ ]+/;
+      var re_gene_index = 0; //remembers how many genes from the template (in order) have been tested so far
 
       var genelist = str.split(re_geneseparator);
       for (var i=0; i<genelist.length; i++) {
         var genestr = genelist[i];
         if (genestr === "") continue; //first or last might be empty because of splitting
         if (genestr === empty_pair) continue; //explicitly ignore empty pairs
-        var gene = str_to_gene(genestr);
+        var gene = null;
+        for (var j=re_gene_index; j<re_genes.length; j++) {
+          var gene_maybe = str_to_gene(j, genestr);
+          if (! (gene_maybe === null )) {
+            gene = gene_maybe;
+            re_gene_index = j+1;
+            break;
+          }
+        }
         if (gene === null) {
-          /*there's an unrecognized gene*/
-          console.log("FAILED TO IDENTIFY A GENE");
-          return null;
-        } else if (gene[0] in genome) {
-          /*duplicate gene definition*/
-          console.log("A GENE WAS DEFINED TWICE");
+          /*wrong gene order, duplicates, or unknown genes*/
+          console.log("FAILED TO PARSE GENOME");
           return null;
         } else {
           genome[gene[0]] = [gene[1], gene[2]];
@@ -127,6 +127,7 @@
         console.log("REQUIRED GENE MISSING");
         return null
       }
+      console.log("GENOME PARSED SUCCESSFULLY");
       return genome;
     }
 
@@ -137,11 +138,9 @@
         genes_output.innerHTML = "<li>Not valid genome</li>";
         return;
       }
-      console.log(genome);
       for (var i=0; i<re_genes.length; i++) {
         var gene_template = re_genes[i];
         var gene_name = gene_template[0];
-        console.log(gene_name);
         if (!(gene_name in genome)) continue;
         genes_output.innerHTML += "<li>";
         genes_output.innerHTML += gene_name;
