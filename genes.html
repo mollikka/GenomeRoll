@@ -23,8 +23,10 @@
     var re_genes = [
       /*OUTPUT WILL BE IN THIS ORDER
         gene: gene name, regex, required*/
+      //genotype(color)(required)
       ["Extension", new RegExp("^(E|e)(E|e)$"), true],
       ["Agouti", new RegExp("^(A|Ay|Ad|At|a)(A|Ay|Ad|At|a)$"), true],
+      //genotype(color)(optional)
       ["C gene", new RegExp("^(n|C)(n|C)$"), false],
       ["B gene", new RegExp("^(n|B)(n|B)$"), false],
       ["Z gene", new RegExp("^(n|Z)(n|Z)$"), false],
@@ -61,10 +63,24 @@
       ["Fwn gene", new RegExp("^(n|Fwn)(n|Fwn)$"), false],
       ["I gene", new RegExp("^(n|I)(n|I)$"), false],
       ["S something", new RegExp("^(n|Sp|Sb)(n|Sp|Sb)$"), false],
+      ["T gene", new RegExp("^(n|T)(n|T)$"), false],
       ["W gene", new RegExp("^(n|W)(n|W)$"), false],
       ["Bd gene", new RegExp("^(n|Bd)(n|Bd)$"), false],
       ["Gvl gene", new RegExp("^(n|Gvl)(n|Gvl)$"), false],
       ["N gene", new RegExp("^(n|N\\+|N\\-|No)(n|N\\+|N\\-|No)$"), false],
+
+      //genotype(other)(required)
+      ["Eye color B", new RegExp("^(B|b)(B|b)$"), true],
+      ["Eye color A", new RegExp("^(A|Ah|a)(A|Ah|a)$"), true],
+      ["Mane", new RegExp("^(Mn|Mkl|Ms|Mbr)(Mn|Mkl|Ms|Mbr)$"), true],
+      ["Fur", new RegExp("^(Tn|Ts|Tnc)(Tn|Ts|Tnc)$"), true],
+      ["Tail", new RegExp("^(Ls|Lh|Ll)(Ls|Lh|Ll)$"), true],
+
+      //genotype(other)(optional)
+      ["alb", new RegExp("^(n|Alb)(n|Alb)$"), false],
+      ["brn", new RegExp("^(n|Brn)(n|Brn)$"), false],
+      ["mel", new RegExp("^(n|Mel)(n|Mel)$"), false],
+      ["som", new RegExp("^(n|Som)(n|Som)$"), false],
     ]
     function str_to_gene(re_genes_index, str) {
       var i = re_genes_index;
