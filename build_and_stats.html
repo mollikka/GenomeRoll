@@ -40,29 +40,24 @@
       setup_build_input(parsed_json, mom_build_input);
       setup_build_input(parsed_json, kid_build_input);
 
-      dad_build_input.oninput = function() {
+      function update() {
         pup_build_output.innerHTML = get_pup_build_choices(parsed_json, dad_build_input.value, mom_build_input.value);
-      }
 
-      mom_build_input.oninput = function() {
-        pup_build_output.innerHTML = get_pup_build_choices(parsed_json, dad_build_input.value, mom_build_input.value);
-      }
-
-      kid_build_input.oninput = function() {
         var dad_stats = parse_stats(parsed_json, dad_stats_input.value);
         var mom_stats = parse_stats(parsed_json, mom_stats_input.value);
         var kid_stats = calculate_pup_stats(parsed_json, dad_stats, mom_stats, kid_build_input.value);
+
+        display_stats(parsed_json, dad_stats_output, dad_stats);
+        display_stats(parsed_json, mom_stats_output, mom_stats);
         display_stats(parsed_json, kid_stats_output, kid_stats);
+
       }
 
-      dad_stats_input.oninput = function() {
-        var dad_stats = parse_stats(parsed_json, dad_stats_input.value);
-        display_stats(parsed_json, dad_stats_output, dad_stats);
-      }
-      mom_stats_input.oninput = function() {
-        var mom_stats = parse_stats(parsed_json, mom_stats_input.value);
-        display_stats(parsed_json, mom_stats_output, mom_stats);
-      }
+      dad_build_input.oninput = update;
+      mom_build_input.oninput = update;
+      kid_build_input.oninput = update;
+      dad_stats_input.oninput = update;
+      mom_stats_input.oninput = update;
     }
   };
   request.open("GET","build.json", true);
