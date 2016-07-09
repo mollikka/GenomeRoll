@@ -69,7 +69,7 @@ function get_input_traits (){
 
   for (var i=0; i<mom_traits_fields.length; i++) {
     if (!mom_traits_fields[i].checked) {continue;}
-    mom_traits.push(dad_traits_fields[i].value);
+    mom_traits.push(mom_traits_fields[i].value);
   }
   return [dad_traits, mom_traits];
 }
