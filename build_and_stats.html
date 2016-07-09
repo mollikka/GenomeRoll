@@ -28,7 +28,6 @@
   request.onreadystatechange = function() {
     if (request.readyState == 4 && request.status == 200) {
       var parsed_json = JSON.parse(request.responseText);
-      console.log(parsed_json);
 
       setup_build_input(parsed_json, dad_build_input);
       setup_build_input(parsed_json, mom_build_input);
