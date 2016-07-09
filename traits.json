@@ -2,65 +2,54 @@
   "Agile": {
     "male": true,
     "female": true,
-    "effects": {},
     "inherit": 0.5,
     "mutate": 0
   },
   "Nosy": {
     "male": true,
     "female": true,
-    "effects": {},
     "inherit": 0.3,
     "mutate": 0
   },
   "Shaggy": {
     "male": true,
     "female": true,
-    "effects": {},
     "inherit": 0.05,
     "mutate": 0
   },
   "Masculine female (Maned)": {
     "male": false,
     "female": true,
-    "effects": {
-      "mankids": 0.75
-    },
     "inherit": 0.3,
     "mutate": 0.01
   },
   "Smut spots": {
     "male": true,
     "female": true,
-    "effects": {},
     "inherit": 0,
     "mutate": 0.05
   },
   "Birdcatcher": {
     "male": true,
     "female": true,
-    "effects": {},
     "inherit": 0,
     "mutate": 0.05
   },
   "Floppy ears": {
     "male": true,
     "female": true,
-    "effects": {},
     "inherit": 0.0,
     "mutate": 0.01
   },
   "Manchado": {
     "male": true,
     "female": true,
-    "effects": {},
     "inherit": 0.0,
     "mutate": 0.005
   },
   "Monochroma": {
     "male": true,
     "female": true,
-    "effects": {},
     "inherit": 0.0,
     "mutate": 0.005
   }
