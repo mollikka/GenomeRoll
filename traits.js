@@ -26,25 +26,29 @@ function calculate_pup_traits(parsed_json, dad_traits, mom_traits, is_male) {
   var traitdata = parsed_json;
   var traits = {};
 
-  for (var i=0; i<dad_traits.length; i++) {
-    //ignore dad's trait if I'm a girl and he's not offering a girly trait
-    if ((!is_male) && (!traitdata[dad_traits[i]].female)) continue;
-    traits[dad_traits[i]] = traitdata[dad_traits[i]].inherit;
-  }
-
-  for (var i=0; i<mom_traits.length; i++) {
-    //ignore mom's trait if I'm a boy and she's not offering a boyish trait
-    if ((is_male) && (!traitdata[mom_traits[i]].male)) continue;
-    if (mom_traits[i] in traits) {
-      var chance_dad = traits[mom_traits[i]];
-      var chance_mom = traitdata[mom_traits[i]].inherit;
-      traits[mom_traits[i]] = 1-(1-chance_dad)*(1-chance_mom);
-    } else {
-      traits[mom_traits[i]] = traitdata[mom_traits[i]].inherit;
+  for (var key in traitdata) {
+    var trait = traitdata[key];
+    //traits of wrong gender have zero chance of happening
+    if (((!is_male) && (!trait.female)) || (is_male && (!trait.male))) {
+      traits[key] = 0;
+      continue;
+    }
+    //calculate chance if both parents have the trait
+    else if (dad_traits.indexOf(key)>-1 && mom_traits.indexOf(key)>-1) {
+      traits[key] = (1-(1-trait.mutate)*(1-trait.inherit)*(1-trait.inherit));
+      continue;
+    }
+    //calculate chance if one parents has the trait
+    else if (dad_traits.indexOf(key)>-1 || mom_traits.indexOf(key)>-1) {
+      traits[key] = (1-(1-trait.mutate)*(1-trait.inherit));
+    }
+    else {
+      traits[key] = trait.mutate;
     }
   }
   return traits;
 }
+
 function display_pup_traits(list_element, pup_traits) {
   list_element.innerHTML = "";
   for (var key in pup_traits) {
