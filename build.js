@@ -29,6 +29,24 @@ function setup_build_input(parsed_json, input_element) {
   }
 }
 
+function calculate_pup_stats(parsed_json, dad_stats, mom_stats, kid_build) {
+  var stats = {};
+  for (var i=0; i<parsed_json.stats.length; i++) {
+    var key = parsed_json.stats[i];
+    stats[key] = (dad_stats[key] + mom_stats[key])/parsed_json.modifiers[kid_build];
+  }
+  return stats;
+}
+
+function get_pup_build_choices(parsed_json, dad_build, mom_build) {
+  if (dad_build + mom_build in parsed_json.inheritance) {
+    return parsed_json.inheritance[dad_build + mom_build];
+  } else if (mom_build + dad_build in parsed_json.inheritance) {
+    return parsed_json.inheritance[mom_build + dad_build];
+  } else {
+    return null;
+  }
+}
 function display_stats(parsed_json, output_list, stats) {
   output_list.innerHTML = "";
   if (stats === null) {
