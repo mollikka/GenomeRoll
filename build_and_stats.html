@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Breeding Simulator 2016</title>
+  <script src="build.js"></script>
+</head>
+<body>
+  <h1>STATUS WORKSHOP</h1>
+    <h2>Paternal stats</h2>
+    <form>
+      <input id="dad_stats_input" type="text">
+      <select id="dad_build_input"></select>
+    </form>
+    <ul id="dad_stats_output">
+    </ul>
+    <h2>Maternal stats</h2>
+    <form>
+      <input id="mom_stats_input" type="text">
+      <select id="mom_build_input"></select>
+    </form>
+    <ul id="mom_stats_output">
+    </ul>
+  <script>
+
+  var request = new XMLHttpRequest();
+  var checkboxes = [];
+  request.onreadystatechange = function() {
+    if (request.readyState == 4 && request.status == 200) {
+      var parsed_json = JSON.parse(request.responseText);
+      console.log(parsed_json);
+
+      setup_build_input(parsed_json, dad_build_input);
+      setup_build_input(parsed_json, mom_build_input);
+      dad_stats_input.oninput = function() {
+        var dad_stats = parse_stats(parsed_json, dad_stats_input.value);
+        display_stats(parsed_json, dad_stats_output, dad_stats);
+      }
+      mom_stats_input.oninput = function() {
+        var mom_stats = parse_stats(parsed_json, mom_stats_input.value);
+        display_stats(parsed_json, dad_stats_output, mom_stats);
+      }
+    }
+  };
+  request.open("GET","build.json", true);
+  request.send(); 
+
+
+
+  </script>
+</body>
+</html>
