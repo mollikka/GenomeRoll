@@ -1,0 +1,55 @@
+{
+  "traitclasses": {
+    "Common": 0.5,
+    "Uncommon": 0.3,
+    "Rare": 0.15,
+    "Very Rare": 0.05,
+    "Not Genetic": 0.0
+  },
+  "traits": {
+    "Agile": {
+      "class": "Uncommon",
+      "male": true,
+      "female": true,
+      "effects": {}
+    },
+    "Nosy": {
+      "class": "Rare",
+      "male": true,
+      "female": true,
+      "effects": {}
+    },
+    "Shaggy": {
+      "class": "Very Rare",
+      "male": true,
+      "female": true,
+      "effects": {}
+    },
+    "Maned male": {
+      "class": "Common",
+      "male": true,
+      "female": false,
+      "effects": {}
+    },
+    "Maned female": {
+      "class": "Very Rare",
+      "male": false,
+      "female": true,
+      "effects": {}
+    },
+    "Masculine": {
+      "class": "Common",
+      "male": true,
+      "female": true,
+      "effects": {
+        "mankids": 0.75
+      }
+    },
+    "Scarface": {
+      "class": "Not Genetic",
+      "male": true,
+      "female": true,
+      "effects": {}
+    }
+  }
+}
