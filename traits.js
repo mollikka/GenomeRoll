@@ -1,13 +1,12 @@
 function setup_traitform(parsed_json, input_elem, is_male) {
 
-  var traitclasses = parsed_json.traitclasses;
-  var traits = parsed_json.traits;
+  var traits = parsed_json;
   input_elem.innerHTML = "";
 
   for (var key in traits) {
     var q = document.createElement("li");
     var inp = document.createElement("input");
-    var label = document.createTextNode(key + " (" + traits[key].class + ")");
+    var label = document.createTextNode(key);
     inp.type = "checkbox";
     inp.value = key;
     if (is_male) inp.disabled = !traits[key].male;
@@ -19,14 +18,13 @@ function setup_traitform(parsed_json, input_elem, is_male) {
 }
 
 function calculate_pup_traits(parsed_json, dad_traits, mom_traits, is_male) {
-  var traitclasses = parsed_json.traitclasses;
-  var traitdata = parsed_json.traits;
+  var traitdata = parsed_json;
   var traits = {};
 
   for (var i=0; i<dad_traits.length; i++) {
     //ignore dad's trait if I'm a girl and he's not offering a girly trait
     if ((!is_male) && (!traitdata[dad_traits[i]].female)) continue;
-    traits[dad_traits[i]] = traitclasses[traitdata[dad_traits[i]].class];
+    traits[dad_traits[i]] = traitdata[dad_traits[i]].inherit;
   }
 
   for (var i=0; i<mom_traits.length; i++) {
@@ -34,10 +32,10 @@ function calculate_pup_traits(parsed_json, dad_traits, mom_traits, is_male) {
     if ((is_male) && (!traitdata[mom_traits[i]].male)) continue;
     if (mom_traits[i] in traits) {
       var chance_dad = traits[mom_traits[i]];
-      var chance_mom = traitclasses[traitdata[mom_traits[i]].class];
+      var chance_mom = traitdata[mom_traits[i]].inherit;
       traits[mom_traits[i]] = 1-(1-chance_dad)*(1-chance_mom);
     } else {
-      traits[mom_traits[i]] = traitclasses[traitdata[mom_traits[i]].class];
+      traits[mom_traits[i]] = traitdata[mom_traits[i]].inherit;
     }
   }
   return traits;
