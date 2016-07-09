@@ -1,4 +1,12 @@
 {
+  "stats": [
+    "Strength",
+    "Stamina",
+    "Speed",
+    "Agility",
+    "Hunting",
+    "Obedience"
+  ],
   "modifiers": {
     "S": 1.5,
     "A": 1.8,
