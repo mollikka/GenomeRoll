@@ -4,13 +4,18 @@ function setup_traitform(parsed_json, input_elem, is_male) {
   input_elem.innerHTML = "";
 
   for (var key in traits) {
+    var trait = traits[key];
+    //ignore trait that this gender cannot have
+    if (is_male && !trait.male) continue;
+    if (!is_male && !trait.female) continue;
+    //ignore trait that is not inheritable
+    if (trait.inherit === 0) continue;
+
     var q = document.createElement("li");
     var inp = document.createElement("input");
     var label = document.createTextNode(key);
     inp.type = "checkbox";
     inp.value = key;
-    if (is_male) inp.disabled = !traits[key].male;
-    else inp.disabled = !traits[key].female;
     q.appendChild(inp);
     q.appendChild(label);
     input_elem.appendChild(q);
