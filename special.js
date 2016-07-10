@@ -1,7 +1,7 @@
 function setup_special_options(parsed_json, input_element) {
   var special = parsed_json.special;
   var container = document.createElement("div");
-  container.class = "input_container";
+  container.className = "input_container";
 
   var checkbox_list = document.createElement("ul");
   container.appendChild(checkbox_list);

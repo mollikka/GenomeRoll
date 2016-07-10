@@ -2,7 +2,7 @@ var empty_pair = "nn";
 
 function setup_genome_input(parsed_json, input_element) {
   var input_container = document.createElement("div");
-  input_container.class = "input_container";
+  input_container.className = "input_container";
   var label = document.createElement("h3");
   label.innerHTML = "Genome";
 
