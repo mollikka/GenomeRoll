@@ -1,7 +1,8 @@
 function setup_traitform(parsed_json, input_elem, is_male) {
 
+  var input_list = document.createElement("ul");
+  input_elem.appendChild(input_list);
   var traits = parsed_json.traits;
-  input_elem.innerHTML = "";
 
   for (var key in traits) {
     var trait = traits[key];
@@ -18,7 +19,7 @@ function setup_traitform(parsed_json, input_elem, is_male) {
     inp.value = key;
     q.appendChild(inp);
     q.appendChild(label);
-    input_elem.appendChild(q);
+    input_list.appendChild(q);
   }
 }
 
