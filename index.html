@@ -12,15 +12,11 @@
     <form id="dad_input">
       <h2>Paternal settings</h2>
     </form>
-    <div id="dad_output">
-    </div>
   </div>
   <div class="parent_field">
     <form id="mom_input">
       <h2>Maternal settings</h2>
     </form>
-    <div id="mom_output">
-    </div>
   </div>
   <script>
 
@@ -41,33 +37,8 @@
   request.open("GET", "fantasydog.json", true);
   request.send();
 
-  function setup_input(parsed_json, input_element, output_element, is_male) {
-    for (var key in parsed_json.genotypes) {
-
-      /*make an input box for the genotype*/
-      var input_container = document.createElement("div");
-      input_container.class = "input_container";
-
-      var genome_input = document.createElement("input");
-      genome_input.type = "text";
-      genome_input.re_genes = get_genome_template(parsed_json, key);
-
-      var label = document.createTextNode("Genome, "+key)
-
-      var genome_output = document.createElement("ul");
-      genome_input.output = genome_output;
-
-      input_container.appendChild(label);
-      input_container.appendChild(genome_input);
-      input_container.appendChild(genome_output);
-      input_element.appendChild(input_container);
-
-      genome_input.oninput = function() {
-        var genome = str_to_genome(this.value, this.re_genes);
-        display_genome(genome, this.output, this.re_genes);
-      }
-
-    }
+  function setup_input(parsed_json, input_element, is_male) {
+    setup_genome_input(parsed_json, input_element);
   }
 
   </script>

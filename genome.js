@@ -1,5 +1,33 @@
 var empty_pair = "nn";
 
+function setup_genome_input(parsed_json, input_element) {
+  for (var key in parsed_json.genotypes) {
+
+    /*make an input box for the genotype*/
+    var input_container = document.createElement("div");
+    input_container.class = "input_container";
+
+    var genome_input = document.createElement("input");
+    genome_input.type = "text";
+    genome_input.re_genes = get_genome_template(parsed_json, key);
+
+    var label = document.createTextNode("Genome, "+key)
+
+    var genome_output = document.createElement("ul");
+    genome_input.output = genome_output;
+
+    input_container.appendChild(label);
+    input_container.appendChild(genome_input);
+    input_container.appendChild(genome_output);
+    input_element.appendChild(input_container);
+
+    genome_input.oninput = function() {
+      var genome = str_to_genome(this.value, this.re_genes);
+      display_genome(genome, this.output, this.re_genes);
+    }
+  }
+}
+
 function get_genome_template(jsondata,genome_name) {
   var data = jsondata.genotypes[genome_name];
   var genome = [];
