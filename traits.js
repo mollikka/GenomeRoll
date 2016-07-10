@@ -21,6 +21,7 @@ function setup_traitform(parsed_json, input_elem, is_male) {
     q.appendChild(label);
     input_list.appendChild(q);
   }
+  return input_list;
 }
 
 function calculate_pup_traits(parsed_json, dad_traits, mom_traits, is_male) {

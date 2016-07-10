@@ -26,6 +26,7 @@ function setup_genome_input(parsed_json, input_element) {
       display_genome(genome, this.output, this.re_genes);
     }
   }
+  return genome_input;
 }
 
 function get_genome_template(jsondata,genome_name) {
