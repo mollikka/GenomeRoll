@@ -20,13 +20,16 @@ function parse_stats(build_json, text_input) {
 }
 
 function setup_build_input(parsed_json, input_element) {
+  var menu = document.createElement("select");
+  input_element.appendChild(menu);
   for (var key in parsed_json.build.modifiers) {
     var newoption = document.createElement("option");
     var text = document.createTextNode(key);
     newoption.value = key;
     newoption.appendChild(text);
-    input_element.appendChild(newoption);
+    menu.appendChild(newoption);
   }
+  return menu;
 }
 
 function calculate_pup_stats(parsed_json, dad_stats, mom_stats, kid_build) {

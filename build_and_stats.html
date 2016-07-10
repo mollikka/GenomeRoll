@@ -10,21 +10,21 @@
     <h2>Paternal stats</h2>
     <form>
       <input id="dad_stats_input" type="text">
-      <select id="dad_build_input"></select>
+      <div id="dad_build"></div>
     </form>
     <ul id="dad_stats_output">
     </ul>
     <h2>Maternal stats</h2>
     <form>
       <input id="mom_stats_input" type="text">
-      <select id="mom_build_input"></select>
+      <div id="mom_build"></div>
     </form>
     <ul id="mom_stats_output">
     </ul>
     <h2>Pup stats</h2>
     <p>Possible builds:</p><div id="pup_build_output"></div>
     <form>
-      <select id="kid_build_input"></select>
+      <div id="kid_build"></div>
     </form>
     <ul id="kid_stats_output">
     </ul>
@@ -36,9 +36,9 @@
     if (request.readyState == 4 && request.status == 200) {
       var parsed_json = JSON.parse(request.responseText);
 
-      setup_build_input(parsed_json, dad_build_input);
-      setup_build_input(parsed_json, mom_build_input);
-      setup_build_input(parsed_json, kid_build_input);
+      var dad_build_input = setup_build_input(parsed_json, dad_build);
+      var mom_build_input = setup_build_input(parsed_json, mom_build);
+      var kid_build_input = setup_build_input(parsed_json, kid_build);
 
       function update() {
         pup_build_output.innerHTML = get_pup_build_choices(parsed_json, dad_build_input.value, mom_build_input.value);
