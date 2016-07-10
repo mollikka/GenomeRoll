@@ -20,8 +20,12 @@ function parse_stats(build_json, text_input) {
 }
 
 function setup_build_input(parsed_json, input_element) {
+  var container = document.createElement("div");
+  container.class = "input_container";
+  var label = document.createTextNode("Build");
   var menu = document.createElement("select");
-  input_element.appendChild(menu);
+  container.appendChild(label);
+  container.appendChild(menu);
   for (var key in parsed_json.build.modifiers) {
     var newoption = document.createElement("option");
     var text = document.createTextNode(key);
@@ -29,6 +33,7 @@ function setup_build_input(parsed_json, input_element) {
     newoption.appendChild(text);
     menu.appendChild(newoption);
   }
+  input_element.appendChild(container);
   return menu;
 }
 
