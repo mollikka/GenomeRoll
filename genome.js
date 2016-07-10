@@ -5,6 +5,7 @@ function setup_genome_input(parsed_json, input_element) {
   input_container.className = "input_container";
   var label = document.createElement("h3");
   label.innerHTML = "Genome";
+  input_container.appendChild(label);
 
   for (var key in parsed_json.genotypes) {
 
