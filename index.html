@@ -7,6 +7,7 @@
 </head>
 <body>
   <h1>Breeding Simulator 2016</h1>
+  <div id="status_display">Javascript is not running!</div>
   <div class="parent_field">
     <form id="dad_input">
       <h2>Paternal settings</h2>
@@ -23,6 +24,7 @@
   </div>
   <script>
 
+  status_display.innerHTML = "Sending species data request."
 
   var request = new XMLHttpRequest();
   request.onreadystatechange = function() {
@@ -30,6 +32,10 @@
       var parsed_json = JSON.parse(request.responseText);
       setup_input(parsed_json, dad_input, true);
       setup_input(parsed_json, mom_input, false);
+      status_display.innerHTML = "Species data loaded!"
+    }
+    else if (request.readyState == 4) {
+      status_display.innerHTML = "Species data error "+request.status;
     }
   };
   request.open("GET", "fantasydog.json", true);
