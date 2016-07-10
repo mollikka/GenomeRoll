@@ -113,24 +113,27 @@ function str_to_genome(str, re_genes) {
   return genome;
 }
 
-function display_genome(genome, output_list_element, re_genes) {
-  var genes_output = output_list_element;
-  genes_output.innerHTML = "";
+function display_genome(genome, output_element, re_genes) {
+
+  output_element.innerHTML = "";
   if (genome === null) {
     return;
   }
+  var genes_output = document.createElement("ul");
+  output_element.appendChild(genes_output);
+
   for (var i=0; i<re_genes.length; i++) {
     var gene_template = re_genes[i];
     var gene_name = gene_template[0];
     if (!(gene_name in genome)) continue;
-    genes_output.innerHTML += "<li>";
-    genes_output.innerHTML += gene_name;
-    genes_output.innerHTML += " - ";
-    genes_output.innerHTML += genome[gene_name][0];
-    genes_output.innerHTML += ",";
-    genes_output.innerHTML += genome[gene_name][1];
-    genes_output.innerHTML += "</li>";
-  }
 
+    var el = document.createElement("li");
+
+    var text = document.createTextNode(gene_name + " - " +
+                            genome[gene_name][0] + "," + genome[gene_name][1]);
+    el.appendChild(text);
+
+    genes_output.appendChild(el);
+  }
 }
 
