@@ -19,6 +19,11 @@
     <form id="mom_input">
     </form>
   </div>
+  <div class="special_options">
+    <h2>Breeding options</h2>
+    <form id="special_options_input">
+    </form>
+  </div>
   <script>
 
   status_display.innerHTML = "Sending species data request."
@@ -29,6 +34,7 @@
       var parsed_json = JSON.parse(request.responseText);
       setup_input(parsed_json, dad_input, true);
       setup_input(parsed_json, mom_input, false);
+      setup_special_options(parsed_json, special_options_input);
       status_display.innerHTML = "Species data loaded!"
     }
     else if (request.readyState == 4) {
