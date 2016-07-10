@@ -257,5 +257,55 @@
       "inherit": 0.0,
       "mutate": 0.005
     }
+  },
+  "special": {
+    "Masculine": {
+      "disabledwith": [
+        "Group"
+      ],
+      "activation": ["trait", "Masculine female (Maned)"]
+    },
+    "Prime": {
+      "disabledwith": [
+        "Doubleprime",
+        "Group"
+      ],
+      "activation": ["option"]
+    },
+    "Doubleprime": {
+      "disabledwith": [
+        "Group"
+      ],
+      "activation": ["option"]
+    },
+    "Group": {
+      "disabledwith": [],
+      "activation": ["option"]
+    },
+    "Best": {
+      "disabledwith": [
+        "Group"
+      ],
+      "activation": ["option"]
+    },
+    "Supreme": {
+      "disabledwith": [
+        "Group"
+      ],
+      "activation": ["option"]
+    },
+    "Pheromone Boost": {
+      "disabledwith": [
+        "Group"
+      ],
+      "activation": ["option"]
+    },
+    "Shady Pheromone Boost": {
+      "disabledwith": [
+        "Pheromone Boost",
+        "Group"
+      ],
+      "activation": ["option"]
+    }
   }
 }
