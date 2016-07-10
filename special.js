@@ -75,14 +75,11 @@ function get_active_effects(parsed_json, dad_traits_parent, mom_traits_parent, u
 
   /*go through active specials again to see if there are conflicts*/
   var active_specials = maybe_active_specials.slice();
-  console.log("");
   for (var i=0; i<maybe_active_specials.length; i++) {
     /*skip if already deactivated*/
     var special = maybe_active_specials[i];
     if (active_specials.indexOf(special) == -1) {continue;}
-    console.log(maybe_active_specials[i]);
     var conflicts = specialsdata[special].disabledwith;
-    console.log("disabledwith",conflicts);
     for (var j=0; j<conflicts.length; j++) {
       if (maybe_active_specials.indexOf(conflicts[j]) > -1) {
         active_specials.splice(active_specials.indexOf(special), 1);
@@ -90,6 +87,5 @@ function get_active_effects(parsed_json, dad_traits_parent, mom_traits_parent, u
       }
     }
   }
-
-  console.log("actives",active_specials);
+  return active_specials;
 }

@@ -32,13 +32,13 @@
       setup_traitform(parsed_json, mama_traits_list, false);
       setup_special_options(parsed_json, special_options_input);
       special_options_input.onchange = function() {
-        get_active_effects(parsed_json, papa_traits_list, mama_traits_list, special_options_input);
+        effects_display.innerHTML = get_active_effects(parsed_json, papa_traits_list, mama_traits_list, special_options_input);
       }
       mama_traits_list.onchange = function() {
-        get_active_effects(parsed_json, papa_traits_list, mama_traits_list, special_options_input);
+        effects_display.innerHTML = get_active_effects(parsed_json, papa_traits_list, mama_traits_list, special_options_input);
       }
       papa_traits_list.onchange = function() {
-        get_active_effects(parsed_json, papa_traits_list, mama_traits_list, special_options_input);
+        effects_display.innerHTML = get_active_effects(parsed_json, papa_traits_list, mama_traits_list, special_options_input);
       }
     }
   };
