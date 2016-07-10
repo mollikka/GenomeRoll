@@ -15,10 +15,10 @@ function setup_special_options(parsed_json, input_element) {
     var checkbox = document.createElement("input");
     checkbox.type = "checkbox";
     checkbox.value = key;
-    checkbox_list.appendChild(checkbox);
+    listitem.appendChild(checkbox);
 
     var label = document.createTextNode(key);
-    checkbox_list.appendChild(label);
+    listitem.appendChild(label);
   }
 
   input_element.appendChild(container);
