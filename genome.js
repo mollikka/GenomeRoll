@@ -17,7 +17,7 @@ function setup_genome_input(parsed_json, input_element) {
     var label = document.createElement("h4");
     label.innerHTML = key;
 
-    var genome_output = document.createElement("ul");
+    var genome_output = document.createElement("div");
     genome_input.output = genome_output;
 
     input_container.appendChild(label);
