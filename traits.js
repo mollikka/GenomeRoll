@@ -2,6 +2,9 @@ function setup_traitform(parsed_json, input_elem, is_male) {
 
   var container = document.createElement("div");
   container.class = "input_container";
+  var label = document.createElement("h3");
+  label.innerHTML = "Traits";
+  container.appendChild(label);
   var input_list = document.createElement("ul");
   container.appendChild(input_list);
   var traits = parsed_json.traits;

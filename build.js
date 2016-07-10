@@ -22,7 +22,8 @@ function parse_stats(build_json, text_input) {
 function setup_build_input(parsed_json, input_element) {
   var container = document.createElement("div");
   container.class = "input_container";
-  var label = document.createTextNode("Build");
+  var label = document.createElement("h3");
+  label.innerHTML = "Build";
   var menu = document.createElement("select");
   container.appendChild(label);
   container.appendChild(menu);
