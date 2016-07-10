@@ -84,7 +84,6 @@ function display_genome(genome, output_list_element, re_genes) {
   var genes_output = output_list_element;
   genes_output.innerHTML = "";
   if (genome === null) {
-    genes_output.innerHTML = "<li>Not valid genome</li>";
     return;
   }
   for (var i=0; i<re_genes.length; i++) {
