@@ -1,6 +1,6 @@
 function setup_traitform(parsed_json, input_elem, is_male) {
 
-  var traits = parsed_json;
+  var traits = parsed_json.traits;
   input_elem.innerHTML = "";
 
   for (var key in traits) {
@@ -23,7 +23,7 @@ function setup_traitform(parsed_json, input_elem, is_male) {
 }
 
 function calculate_pup_traits(parsed_json, dad_traits, mom_traits, is_male) {
-  var traitdata = parsed_json;
+  var traitdata = parsed_json.traits;
   var traits = {};
 
   for (var key in traitdata) {

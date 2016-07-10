@@ -1,7 +1,7 @@
 var empty_pair = "nn";
 
-function get_genome_template(jsondata) {
-  var data = jsondata;
+function get_genome_template(jsondata,genome_name) {
+  var data = jsondata.genotypes[genome_name];
   var genome = [];
   for (var key in data) {
     var gene_name = key;

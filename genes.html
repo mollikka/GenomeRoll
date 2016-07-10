@@ -21,13 +21,13 @@
   </form>
   <script>
 
-  function setup_validator(json_url, input_elem, output_list) {
+  function setup_validator(json_url, genome_name, input_elem, output_list) {
 
     var request = new XMLHttpRequest();
     request.onreadystatechange = function() {
       if (request.readyState == 4 && request.status == 200) {
         var parsed_json = JSON.parse(request.responseText);
-        var re_genes = get_genome_template(parsed_json);
+        var re_genes = get_genome_template(parsed_json, genome_name);
         input_elem.oninput = function() {
           var genome = str_to_genome(this.value, re_genes);
           display_genome(genome, output_list, re_genes);
@@ -38,10 +38,10 @@
     request.send();
   }
 
-  setup_validator("color_genome.json", genes_input_color, genes_output_color);
+  setup_validator("fantasydog.json", "color", genes_input_color, genes_output_color);
 
 
-  setup_validator("other_genome.json", genes_input_other, genes_output_other);
+  setup_validator("fantasydog.json", "other", genes_input_other, genes_output_other);
 
 
 

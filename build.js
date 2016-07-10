@@ -1,5 +1,5 @@
 function parse_stats(build_json, text_input) {
-  var statlist = build_json.stats;
+  var statlist = build_json.build.stats;
 
   var stat_regex = /([0-9]+[.]?[0-9]*)/g;
 
@@ -20,7 +20,7 @@ function parse_stats(build_json, text_input) {
 }
 
 function setup_build_input(parsed_json, input_element) {
-  for (var key in parsed_json.modifiers) {
+  for (var key in parsed_json.build.modifiers) {
     var newoption = document.createElement("option");
     var text = document.createTextNode(key);
     newoption.value = key;
@@ -31,18 +31,18 @@ function setup_build_input(parsed_json, input_element) {
 
 function calculate_pup_stats(parsed_json, dad_stats, mom_stats, kid_build) {
   var stats = {};
-  for (var i=0; i<parsed_json.stats.length; i++) {
-    var key = parsed_json.stats[i];
-    stats[key] = (dad_stats[key] + mom_stats[key])/parsed_json.modifiers[kid_build];
+  for (var i=0; i<parsed_json.build.stats.length; i++) {
+    var key = parsed_json.build.stats[i];
+    stats[key] = (dad_stats[key] + mom_stats[key])/parsed_json.build.modifiers[kid_build];
   }
   return stats;
 }
 
 function get_pup_build_choices(parsed_json, dad_build, mom_build) {
-  if (dad_build + mom_build in parsed_json.inheritance) {
-    return parsed_json.inheritance[dad_build + mom_build];
-  } else if (mom_build + dad_build in parsed_json.inheritance) {
-    return parsed_json.inheritance[mom_build + dad_build];
+  if (dad_build + mom_build in parsed_json.build.inheritance) {
+    return parsed_json.build.inheritance[dad_build + mom_build];
+  } else if (mom_build + dad_build in parsed_json.build.inheritance) {
+    return parsed_json.build.inheritance[mom_build + dad_build];
   } else {
     return null;
   }
@@ -52,7 +52,7 @@ function display_stats(parsed_json, output_list, stats) {
   if (stats === null) {
     return;
   }
-  var statlist = parsed_json.stats;
+  var statlist = parsed_json.build.stats;
 
   for (var i=0; i<statlist.length; i++) {
     var newstat = document.createElement("li");
