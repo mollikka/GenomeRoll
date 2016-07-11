@@ -38,6 +38,18 @@ function setup_build_input(parsed_json, input_element) {
   return menu;
 }
 
+function setup_stats_input(parsed_json, input_element) {
+  var container = document.createElement("div");
+  container.className = "input_container";
+  var label = document.createElement("h3");
+  label.innerHTML = "Stats";
+  container.appendChild(label);
+  var inputfield = document.createElement("input");
+  container.appendChild(inputfield);
+  input_element.appendChild(container);
+  return input_element;
+}
+
 function calculate_pup_stats(parsed_json, dad_stats, mom_stats, kid_build) {
   var stats = {};
   for (var i=0; i<parsed_json.build.stats.length; i++) {
