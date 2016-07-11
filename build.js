@@ -68,20 +68,3 @@ function get_pup_build_choices(parsed_json, dad_build, mom_build) {
     return null;
   }
 }
-function display_stats(parsed_json, output_element, stats) {
-  output_element.innerHTML = "";
-  if (stats === null) {
-    return;
-  }
-  var statlist = parsed_json.build.stats;
-
-  var output_list = document.createElement("ul");
-
-  for (var i=0; i<statlist.length; i++) {
-    var newstat = document.createElement("li");
-    var text = document.createTextNode(statlist[i]+" "+stats[statlist[i]]);
-    newstat.appendChild(text);
-    output_list.appendChild(newstat);
-  }
-  output_element.appendChild(output_list);
-}

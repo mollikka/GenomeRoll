@@ -57,18 +57,6 @@ function calculate_pup_traits(parsed_json, dad_traits, mom_traits, is_male) {
   return traits;
 }
 
-function display_pup_traits(input_element, pup_traits) {
-  input_element.innerHTML = "";
-  var list_element = document.createElement("ul");
-  for (var key in pup_traits) {
-    trait_li = document.createElement("li");
-    label = document.createTextNode(key + " " + pup_traits[key]);
-    trait_li.appendChild(label);
-    list_element.appendChild(trait_li);
-  }
-  input_element.appendChild(list_element);
-}
-
 function get_input_traits (){
   var dad_traits = [];
   var dad_traits_fields = papa_traits_input.getElementsByTagName('input');

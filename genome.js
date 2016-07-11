@@ -23,11 +23,6 @@ function setup_genome_input(parsed_json, input_element) {
     input_container.appendChild(label);
     input_container.appendChild(genome_input);
     input_container.appendChild(genome_output);
-
-    genome_input.oninput = function() {
-      var genome = str_to_genome(this.value, this.re_genes);
-      display_genome(genome, this.output, this.re_genes);
-    };
   }
   input_element.appendChild(input_container);
   return input_container;
@@ -112,28 +107,3 @@ function str_to_genome(str, re_genes) {
   console.log("GENOME PARSED SUCCESSFULLY");
   return genome;
 }
-
-function display_genome(genome, output_element, re_genes) {
-
-  output_element.innerHTML = "";
-  if (genome === null) {
-    return;
-  }
-  var genes_output = document.createElement("ul");
-  output_element.appendChild(genes_output);
-
-  for (var i=0; i<re_genes.length; i++) {
-    var gene_template = re_genes[i];
-    var gene_name = gene_template[0];
-    if (!(gene_name in genome)) continue;
-
-    var el = document.createElement("li");
-
-    var text = document.createTextNode(gene_name + " - " +
-                            genome[gene_name][0] + "," + genome[gene_name][1]);
-    el.appendChild(text);
-
-    genes_output.appendChild(el);
-  }
-}
-
