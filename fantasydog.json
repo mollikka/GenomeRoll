@@ -1,0 +1,311 @@
+{
+  "build": {
+    "stats": [
+      "Strength",
+      "Stamina",
+      "Speed",
+      "Agility",
+      "Hunting",
+      "Obedience"
+    ],
+    "modifiers": {
+      "S": 1.5,
+      "A": 1.8,
+      "B": 2,
+      "C": 2,
+      "D": 2.2,
+      "E": 2.5
+    },
+    "inheritance": {
+      "SS":["S","S","S","A"],
+      "SA":["S","A"],
+      "SB":["S","A","A","B"],
+      "SC":["A","B","B","C"],
+      "SD":["B","C","C","D"],
+      "SE":["C","D","D","E"],
+      "AA":["S","A","A","B"],
+      "AB":["A","B"],
+      "AC":["B","C"],
+      "AD":["C","D"],
+      "AE":["D","D","D","E"],
+      "BB":["A","B","B","C"],
+      "BC":["B","C","C","D"],
+      "BD":["C","D","D","E"],
+      "BE":["D","E"],
+      "CC":["B","C","C","D"],
+      "CD":["C","D","E","E"],
+      "CE":["D","E","E","E"],
+      "DD":["D","E"],
+      "DE":["E"],
+      "EE":["E"]
+    }
+  },
+  "genotypes": {
+    "color": {
+      "Extension": {
+        "required": true,
+        "genotypes": ["E","e"]},
+      "Agouti": {
+        "required": true,
+        "genotypes": ["A","Ay","Ad","At","a"]},
+      "C gene": {
+        "required": false,
+        "genotypes": ["n","C"]},
+      "B gene": {
+        "required": false,
+        "genotypes": ["n","B"]},
+      "Z gene": {
+        "required": false,
+        "genotypes": ["n","Z"]},
+      "D gene": {
+        "required": false,
+        "genotypes": ["n","D"]},
+      "Pearl": {
+        "required": false,
+        "genotypes": ["n","prl"]},
+      "X gene": {
+        "required": false,
+        "genotypes": ["n","X"]},
+      "Y gene": {
+        "required": false,
+        "genotypes": ["n","Y"]},
+      "O gene": {
+        "required": false,
+        "genotypes": ["n","O","Od"]},
+      "P gene": {
+        "required": false,
+        "genotypes": ["n","P"]},
+      "R gene": {
+        "required": false,
+        "genotypes": ["n","R","rs"]},
+      "Dty gene": {
+        "required": false,
+        "genotypes": ["n","Dty"]},
+      "Mnt gene": {
+        "required": false,
+        "genotypes": ["n","Mnt"]},
+      "V gene": {
+        "required": false,
+        "genotypes": ["n","V"]},
+      "Sph gene": {
+        "required": false,
+        "genotypes": ["n","Sph"]},
+      "U gene": {
+        "required": false,
+        "genotypes": ["n","U"]},
+      "f gene": {
+        "required": false,
+        "genotypes": ["n","f"]},
+      "Fr gene": {
+        "required": false,
+        "genotypes": ["n","Fr"]},
+      "Sk gene": {
+        "required": false,
+        "genotypes": ["n","Sk"]},
+      "Smr gene": {
+        "required": false,
+        "genotypes": ["n","Smr"]},
+      "M gene": {
+        "required": false,
+        "genotypes": ["n","M"]},
+      "Cp gene": {
+        "required": false,
+        "genotypes": ["n","Cp"]},
+      "Sdl gene": {
+        "required": false,
+        "genotypes": ["n","Sdl"]},
+      "Fwl gene": {
+        "required": false,
+        "genotypes": ["n","Fwl"]},
+      "G gene": {
+        "required": false,
+        "genotypes": ["n","G"]},
+      "Kd gene": {
+        "required": false,
+        "genotypes": ["n","Kd"]},
+      "Q gene": {
+        "required": false,
+        "genotypes": ["n","Q","q"]},
+      "P weird": {
+        "required": false,
+        "genotypes": ["n","Pm","Pp","Pc"]},
+      "wlf gene": {
+        "required": false,
+        "genotypes": ["n","wlf"]},
+      "Ld gene": {
+        "required": false,
+        "genotypes": ["n","Ld"]},
+      "Ink gene": {
+        "required": false,
+        "genotypes": ["n","Ink"]},
+      "Crc gene": {
+        "required": false,
+        "genotypes": ["n","Crc"]},
+      "Bl gene": {
+        "required": false,
+        "genotypes": ["n","Bl"]},
+      "Cdr gene": {
+        "required": false,
+        "genotypes": ["n","Cdr"]},
+      "Fwn gene": {
+        "required": false,
+        "genotypes": ["n","Fwn"]},
+      "I gene": {
+        "required": false,
+        "genotypes": ["n","I"]},
+      "S something": {
+        "required": false,
+        "genotypes": ["n","Sp","Sb"]},
+      "T gene": {
+        "required": false,
+        "genotypes": ["n","T"]},
+      "W gene": {
+        "required": false,
+        "genotypes": ["n","W"]},
+      "Bd gene": {
+        "required": false,
+        "genotypes": ["n","Bd"]},
+      "Gvl gene": {
+        "required": false,
+        "genotypes": ["n","Gvl"]},
+      "N gene": {
+        "required": false,
+        "genotypes": ["n","N\\+","N\\-","No"]}
+    },
+    "other": {
+      "Eye color B": {
+        "required": true,
+        "genotypes": ["B","b"]},
+      "Eye color A": {
+        "required": true,
+        "genotypes": ["A","Ah","a"]},
+      "Mane": {
+        "required": true,
+        "genotypes": ["Mn","Mkl","Ms","Mbr"]},
+      "Fur": {
+        "required": true,
+        "genotypes": ["Tn","Ts","Tnc"]},
+      "Tail": {
+        "required": true,
+        "genotypes": ["Ls","Lh","Ll"]},
+      "alb": {
+        "required": false,
+        "genotypes": ["n","Alb"]},
+      "brn": {
+        "required": false,
+        "genotypes": ["n","Brn"]},
+      "mel": {
+        "required": false,
+        "genotypes": ["n","Mel"]},
+      "som": {
+        "required": false,
+        "genotypes": ["n","Som"]}
+    }
+  },
+  "traits": {
+    "Agile": {
+      "male": true,
+      "female": true,
+      "inherit": 0.5,
+      "mutate": 0
+    },
+    "Nosy": {
+      "male": true,
+      "female": true,
+      "inherit": 0.3,
+      "mutate": 0
+    },
+    "Shaggy": {
+      "male": true,
+      "female": true,
+      "inherit": 0.05,
+      "mutate": 0
+    },
+    "Masculine female (Maned)": {
+      "male": false,
+      "female": true,
+      "inherit": 0.3,
+      "mutate": 0.01
+    },
+    "Smut spots": {
+      "male": true,
+      "female": true,
+      "inherit": 0,
+      "mutate": 0.05
+    },
+    "Birdcatcher": {
+      "male": true,
+      "female": true,
+      "inherit": 0,
+      "mutate": 0.05
+    },
+    "Floppy ears": {
+      "male": true,
+      "female": true,
+      "inherit": 0.0,
+      "mutate": 0.01
+    },
+    "Manchado": {
+      "male": true,
+      "female": true,
+      "inherit": 0.0,
+      "mutate": 0.005
+    },
+    "Monochroma": {
+      "male": true,
+      "female": true,
+      "inherit": 0.0,
+      "mutate": 0.005
+    }
+  },
+  "special": {
+    "Masculine": {
+      "disabledwith": [
+        "Group"
+      ],
+      "activation": ["trait", "Masculine female (Maned)"]
+    },
+    "Prime": {
+      "disabledwith": [
+        "Doubleprime",
+        "Group"
+      ],
+      "activation": ["option"]
+    },
+    "Doubleprime": {
+      "disabledwith": [
+        "Group"
+      ],
+      "activation": ["option"]
+    },
+    "Group": {
+      "disabledwith": [],
+      "activation": ["option"]
+    },
+    "Best": {
+      "disabledwith": [
+        "Group"
+      ],
+      "activation": ["option"]
+    },
+    "Supreme": {
+      "disabledwith": [
+        "Group"
+      ],
+      "activation": ["option"]
+    },
+    "Pheromone Boost": {
+      "disabledwith": [
+        "Group"
+      ],
+      "activation": ["option"]
+    },
+    "Shady Pheromone Boost": {
+      "disabledwith": [
+        "Pheromone Boost",
+        "Group"
+      ],
+      "activation": ["option"]
+    }
+  }
+}
