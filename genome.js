@@ -23,6 +23,17 @@ function setup_genome_input(parsed_json, input_element) {
     input_container.appendChild(label);
     input_container.appendChild(genome_input);
     input_container.appendChild(genome_output);
+
+
+    genome_input.oninput = function() {
+      if (this.value == "") {
+        this.className = "";
+      } else if (str_to_genome(this.value, this.re_genes)===null) {
+        this.className = "invalid_input";
+      } else {
+        this.className = "valid_input";
+      }
+    }
   }
   input_element.appendChild(input_container);
   return input_container;
