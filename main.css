@@ -5,3 +5,9 @@
 .input_container {
   border-style: solid;
 }
+.valid_input {
+  background-color: green;
+}
+.invalid_input {
+  background-color: red;
+}

@@ -256,6 +256,12 @@
       "female": true,
       "inherit": 0.0,
       "mutate": 0.005
+    },
+    "Heterochromia": {
+      "male": true,
+      "female": true,
+      "inherit": 0.0,
+      "mutate": 0.05
     }
   },
   "special": {
