@@ -58,7 +58,15 @@ function setup_stats_input(parsed_json, input_element) {
     }
   };
 
-  return input_element;
+  return inputfield;
+}
+
+function stats_to_str(stats) {
+  strs = [];
+  for (var key in stats) {
+    strs.push(key + ": " + stats[key].toFixed(2));
+  }
+  return strs.join(", ");
 }
 
 function calculate_pup_stats(parsed_json, dad_stats, mom_stats, kid_build) {
