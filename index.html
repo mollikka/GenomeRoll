@@ -24,6 +24,10 @@
     <form id="special_options_input">
     </form>
   </div>
+  <div id="breeding_buttons">
+  </div>
+  <div id="breeding_output">
+  </div>
   <script>
 
   status_display.innerHTML = "Sending species data request."
@@ -32,9 +36,22 @@
   request.onreadystatechange = function() {
     if (request.readyState == 4 && request.status == 200) {
       var parsed_json = JSON.parse(request.responseText);
-      setup_input(parsed_json, dad_input, true);
-      setup_input(parsed_json, mom_input, false);
-      setup_special_options(parsed_json, special_options_input);
+
+      /* dad elements */
+      var dad_g = setup_genome_input(parsed_json, dad_input);
+      var dad_t = setup_traitform(parsed_json, dad_input, true);
+      var dad_b = setup_build_input(parsed_json, dad_input);
+      var dad_s = setup_stats_input(parsed_json, dad_input);
+
+      /* mom_elements */
+      var mom_g = setup_genome_input(parsed_json, mom_input);
+      var mom_t = setup_traitform(parsed_json, mom_input, false);
+      var mom_b = setup_build_input(parsed_json, mom_input);
+      var mom_s = setup_stats_input(parsed_json, mom_input);
+
+      var spec = setup_special_options(parsed_json, special_options_input);
+
+      setup_breed_button(parsed_json, dad_b, mom_b, breeding_buttons, breeding_output);
       status_display.innerHTML = "Species data loaded!"
     }
     else if (request.readyState == 4) {
@@ -43,13 +60,6 @@
   };
   request.open("GET", "fantasydog.json", true);
   request.send();
-
-  function setup_input(parsed_json, input_element, is_male) {
-    setup_genome_input(parsed_json, input_element);
-    setup_traitform(parsed_json, input_element, is_male);
-    setup_build_input(parsed_json, input_element);
-    setup_stats_input(parsed_json, input_element);
-  }
 
   </script>
 </body>

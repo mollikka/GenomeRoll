@@ -79,3 +79,10 @@ function get_pup_build_choices(parsed_json, dad_build, mom_build) {
     return null;
   }
 }
+
+function breed_build(parsed_json, dad_build, mom_build) {
+
+  var possible_builds = get_pup_build_choices(parsed_json, dad_build, mom_build);
+
+  return possible_builds[Math.floor(Math.random() * possible_builds.length)];
+}
