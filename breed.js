@@ -26,7 +26,11 @@ function breed_one_pup(parsed_json, dad_traits_element, mom_traits_element, dad_
   label.innerHTML = "Child";
   pup_element.appendChild(label);
 
-  var is_male = true;
+  var is_male = breed_ismale();
+  var genderoutput = document.createElement("p");
+  if (is_male) genderoutput.innerHTML = "Male";
+  else genderoutput.innerHTML = "Female";
+  pup_element.appendChild(genderoutput);
 
   var traitsoutput = document.createElement("p");
   traitsoutput.innerHTML = "Traits: " + breed_traits(parsed_json, dad_traits, mom_traits, is_male);

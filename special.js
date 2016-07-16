@@ -89,3 +89,9 @@ function get_active_effects(parsed_json, dad_traits_parent, mom_traits_parent, u
   }
   return active_specials;
 }
+
+function breed_ismale() {
+  if (Math.random() < 0.5)
+    return true;
+  return false;
+}
