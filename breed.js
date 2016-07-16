@@ -5,7 +5,6 @@ function setup_breed_button(parsed_json, dad_genome_input, mom_genome_input, dad
 
   button.onclick = function() {
     breed_one_pup(parsed_json, dad_genome_input, mom_genome_input, dad_traits_element, mom_traits_element, dad_build_element, mom_build_element, dad_stats_element, mom_stats_element, output_element);
-    console.log("ASD");
   };
 
   parent_element.appendChild(button);
@@ -13,8 +12,6 @@ function setup_breed_button(parsed_json, dad_genome_input, mom_genome_input, dad
 
 function breed_one_pup(parsed_json, dad_genome_input, mom_genome_input, dad_traits_element, mom_traits_element, dad_build_element, mom_build_element, dad_stats_element, mom_stats_element, pup_output_element) {
 
-  console.log(dad_stats_element);
-  console.log(dad_stats_element.value);
   var dad_genes = get_genomes_from_input(parsed_json, dad_genome_input);
   var dad_traits = get_traits_from_input(dad_traits_element);
   var dad_build = dad_build_element.value;
@@ -24,8 +21,6 @@ function breed_one_pup(parsed_json, dad_genome_input, mom_genome_input, dad_trai
   var mom_traits = get_traits_from_input(mom_traits_element);
   var mom_build = mom_build_element.value;
   var mom_stats = parse_stats(parsed_json, mom_stats_element.value);
-  console.log("DAD STATS",dad_stats);
-  console.log("MOM STATS",mom_stats);
 
   var pup_element = document.createElement("div");
   pup_element.className = "offspring";
@@ -40,12 +35,8 @@ function breed_one_pup(parsed_json, dad_genome_input, mom_genome_input, dad_trai
   else genderoutput.innerHTML = "Female";
   pup_element.appendChild(genderoutput);
 
-  console.log(dad_genes);
-  console.log(mom_genes);
   var genes = breed_genomes(parsed_json, dad_genes, mom_genes);
   var genomeoutput = document.createElement("p");
-  console.log(genes);
-  console.log(genomes_to_str(parsed_json, genes));
   genomeoutput.innerHTML = genomes_to_str(parsed_json, genes);
   pup_element.appendChild(genomeoutput);
 
