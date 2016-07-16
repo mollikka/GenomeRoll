@@ -1,4 +1,4 @@
-function setup_traitform(parsed_json, input_elem, is_male) {
+function setup_trait_input(parsed_json, input_elem, is_male) {
 
   var container = document.createElement("div");
   container.className = "input_container";
