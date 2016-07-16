@@ -57,21 +57,25 @@ function calculate_pup_traits(parsed_json, dad_traits, mom_traits, is_male) {
   return traits;
 }
 
-function get_input_traits (){
-  var dad_traits = [];
-  var dad_traits_fields = papa_traits_input.getElementsByTagName('input');
-
-  for (var i=0; i<dad_traits_fields.length; i++) {
-    if (!dad_traits_fields[i].checked) {continue;}
-    dad_traits.push(dad_traits_fields[i].value);
+function breed_traits(parsed_json, dad_traits, mom_traits, is_male) {
+  var chances = calculate_pup_traits(parsed_json, dad_traits, mom_traits, is_male);
+  var traits = [];
+  for (var key in chances) {
+    var chance = chances[key];
+    if (Math.random() < chance) {
+      traits.push(key);
+    }
   }
+  return traits;
+}
 
-  var mom_traits = [];
-  var mom_traits_fields = mama_traits_input.getElementsByTagName('input');
+function get_traits_from_input (traits_input){
+  var traits = [];
+  var traits_fields = traits_input.getElementsByTagName('input');
 
-  for (var i=0; i<mom_traits_fields.length; i++) {
-    if (!mom_traits_fields[i].checked) {continue;}
-    mom_traits.push(mom_traits_fields[i].value);
+  for (var i=0; i<traits_fields.length; i++) {
+    if (!traits_fields[i].checked) {continue;}
+    traits.push(traits_fields[i].value);
   }
-  return [dad_traits, mom_traits];
+  return traits;
 }
