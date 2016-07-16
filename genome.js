@@ -118,3 +118,68 @@ function str_to_genome(str, re_genes) {
   console.log("GENOME PARSED SUCCESSFULLY");
   return genome;
 }
+
+function get_genomes_from_input(parsed_json, input_element) {
+  var genomes = {};
+  var inputs = input_element.getElementsByTagName("input");
+
+  for (var i=0; i<inputs.length; i++) {
+    var genome_name = Object.keys(parsed_json.genotypes)[i];
+    var re_genes = inputs[i].re_genes;
+    genomes[genome_name] = str_to_genome(inputs[i].value, re_genes);
+  }
+
+  return genomes;
+}
+
+function genomes_to_str(parsed_json, genomes) {
+  str = "";
+  for (var key in genomes) {
+    str += key + ": " + genome_to_str(parsed_json, key, genomes[key]) + "<br>";
+  }
+  return str;
+}
+
+function genome_to_str(parsed_json, genomename, genome) {
+  var genes = [];
+
+  //sort the displayed genotypes according to their order in the genome definition
+  function compare(key) {
+    var f = function(a, b) {
+      return parsed_json.genotypes[genomename][key].genotypes.indexOf(a) - parsed_json.genotypes[genomename][key].genotypes.indexOf(b);
+    };
+    return f;
+  }
+
+  for (var key in genome) {
+    if (genome[key][0]=="n" && genome[key][1]=="n") {
+      continue;
+    }
+    var g_sorted = genome[key].slice(0).sort(compare(key));
+    genes.push(g_sorted.join(""));
+  }
+  return genes.join(" ");
+}
+
+function breed_genomes(parsed_json, dad_genes, mom_genes) {
+  var genedata = parsed_json.genotypes;
+  var kidgenomes = {};
+  for (var key in genedata) {
+    var kidgenome = {};
+    for (var gname in genedata[key]) {
+      var MG, FG;
+      MG = dad_genes[key][gname];
+      FG = mom_genes[key][gname];
+
+      if (MG === undefined) MG = ["n", "n"];
+      if (FG === undefined) FG = ["n", "n"];
+
+      console.log(MG, FG);
+      var K1 = MG[Math.floor(Math.random() * 2)];
+      var K2 = FG[Math.floor(Math.random() * 2)];
+      kidgenome[gname] = [K1, K2];
+    }
+    kidgenomes[key] = kidgenome;
+  }
+  return kidgenomes;
+}

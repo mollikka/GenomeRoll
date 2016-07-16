@@ -1,21 +1,23 @@
-function setup_breed_button(parsed_json, dad_traits_element, mom_traits_element, dad_build_element, mom_build_element, parent_element, output_element) {
+function setup_breed_button(parsed_json, dad_genome_input, mom_genome_input, dad_traits_element, mom_traits_element, dad_build_element, mom_build_element, parent_element, output_element) {
   var button = document.createElement("input");
   button.type = "button";
   button.value = "Make a baby!";
 
   button.onclick = function() {
-    breed_one_pup(parsed_json, dad_traits_element, mom_traits_element, dad_build_element, mom_build_element, output_element);
+    breed_one_pup(parsed_json, dad_genome_input, mom_genome_input, dad_traits_element, mom_traits_element, dad_build_element, mom_build_element, output_element);
     console.log("ASD");
   };
 
   parent_element.appendChild(button);
 }
 
-function breed_one_pup(parsed_json, dad_traits_element, mom_traits_element, dad_build_element, mom_build_element, pup_output_element) {
+function breed_one_pup(parsed_json, dad_genome_input, mom_genome_input, dad_traits_element, mom_traits_element, dad_build_element, mom_build_element, pup_output_element) {
 
+  var dad_genes = get_genomes_from_input(parsed_json, dad_genome_input);
   var dad_traits = get_traits_from_input(dad_traits_element);
   var dad_build = dad_build_element.value;
 
+  var mom_genes = get_genomes_from_input(parsed_json, mom_genome_input);
   var mom_traits = get_traits_from_input(mom_traits_element);
   var mom_build = mom_build_element.value;
 
@@ -31,6 +33,15 @@ function breed_one_pup(parsed_json, dad_traits_element, mom_traits_element, dad_
   if (is_male) genderoutput.innerHTML = "Male";
   else genderoutput.innerHTML = "Female";
   pup_element.appendChild(genderoutput);
+
+  console.log(dad_genes);
+  console.log(mom_genes);
+  var genes = breed_genomes(parsed_json, dad_genes, mom_genes);
+  var genomeoutput = document.createElement("p");
+  console.log(genes);
+  console.log(genomes_to_str(parsed_json, genes));
+  genomeoutput.innerHTML = genomes_to_str(parsed_json, genes);
+  pup_element.appendChild(genomeoutput);
 
   var traitsoutput = document.createElement("p");
   traitsoutput.innerHTML = "Traits: " + breed_traits(parsed_json, dad_traits, mom_traits, is_male);
