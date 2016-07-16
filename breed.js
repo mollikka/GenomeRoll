@@ -20,6 +20,7 @@ function breed_one_pup(parsed_json, dad_traits_element, mom_traits_element, dad_
   var mom_build = mom_build_element.value;
 
   var pup_element = document.createElement("div");
+  pup_element.className = "offspring";
 
   var label = document.createElement("h3");
   label.innerHTML = "Child";
