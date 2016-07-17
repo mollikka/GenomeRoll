@@ -25,25 +25,13 @@ function setup_special_options(parsed_json, input_element) {
   return container;
 }
 
-function get_active_effects(parsed_json, dad_traits_parent, mom_traits_parent, user_specials_parent) {
+function get_active_specials(parsed_json, dad_traits_element, mom_traits_element, user_specials_element) {
 
-  var mom_traits = [];
-  var dad_traits = [];
+  var mom_traits = get_traits_from_input(mom_traits_element);
+  var dad_traits = get_traits_from_input(dad_traits_element);
   var chosen_specials = [];
 
-  var m_els = mom_traits_parent.getElementsByTagName("input");
-  for (var i=0; i<m_els.length; i++) {
-    var el = m_els[i];
-    if (el.checked) mom_traits.push(el.value);
-  }
-
-  var d_els = dad_traits_parent.getElementsByTagName("input");
-  for (var i=0; i<d_els.length; i++) {
-    var el = d_els[i];
-    if (el.checked) dad_traits.push(el.value);
-  }
-
-  var o_els = user_specials_parent.getElementsByTagName("input");
+  var o_els = user_specials_element.getElementsByTagName("input");
   for (var i=0; i<o_els.length; i++) {
     var el = o_els[i];
     if (el.checked) chosen_specials.push(el.value);
