@@ -1,7 +1,7 @@
 function setup_breed_button(parsed_json, dad_genome_input, mom_genome_input, dad_traits_element, mom_traits_element, dad_build_element, mom_build_element, dad_stats_element, mom_stats_element, user_specials_element, parent_element, output_element) {
   var button = document.createElement("input");
   button.type = "button";
-  button.value = "Make a baby!";
+  button.value = "Make babies!";
 
   button.onclick = function() {
     breed_one_pup(parsed_json, dad_genome_input, mom_genome_input, dad_traits_element, mom_traits_element, dad_build_element, mom_build_element, dad_stats_element, mom_stats_element, user_specials_element, output_element);
