@@ -75,5 +75,5 @@ function breed_one_pup(parsed_json, dad_genome_input, mom_genome_input, dad_trai
 
     litter_element.appendChild(pup_element);
   }
-  pup_output_element.appendChild(litter_element);
+  pup_output_element.insertBefore(litter_element, pup_output_element.childNodes[0]);
 }
