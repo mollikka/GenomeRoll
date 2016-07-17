@@ -70,7 +70,7 @@ function breed_one_pup(parsed_json, dad_genome_input, mom_genome_input, dad_trai
     pup_element.appendChild(buildoutput);
 
     var statsoutput = document.createElement("p");
-    statsoutput.innerHTML = "Stats: " + stats_to_str(calculate_pup_stats(parsed_json, dad_stats, mom_stats, build));
+    statsoutput.innerHTML = "Stats: " + stats_to_str(calculate_pup_stats(parsed_json, dad_stats, mom_stats, build, effects));
     pup_element.appendChild(statsoutput);
 
     litter_element.appendChild(pup_element);

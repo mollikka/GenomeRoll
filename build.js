@@ -69,11 +69,12 @@ function stats_to_str(stats) {
   return strs.join(", ");
 }
 
-function calculate_pup_stats(parsed_json, dad_stats, mom_stats, kid_build) {
+function calculate_pup_stats(parsed_json, dad_stats, mom_stats, kid_build, active_effects) {
+  var build = get_effect_value(active_effects, "buildOverride", kid_build);
   var stats = {};
   for (var i=0; i<parsed_json.build.stats.length; i++) {
     var key = parsed_json.build.stats[i];
-    stats[key] = (dad_stats[key] + mom_stats[key])/parsed_json.build.modifiers[kid_build];
+    stats[key] = (dad_stats[key] + mom_stats[key])/parsed_json.build.modifiers[build];
   }
   return stats;
 }
