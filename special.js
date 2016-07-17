@@ -104,8 +104,12 @@ function specials_to_effects(parsed_json, active_specials) {
   return active_effects;
 }
 
-function breed_ismale() {
-  if (Math.random() < 0.5)
+function breed_ismale(active_effects) {
+  var male_chance = 0.5;
+  if ("maleChance" in active_effects) {
+    male_chance = active_effects.maleChance;
+  }
+  if (Math.random() < male_chance)
     return true;
   return false;
 }
