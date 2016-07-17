@@ -60,6 +60,13 @@ function breed_one_pup(parsed_json, dad_genome_input, mom_genome_input, dad_trai
     genomeoutput.innerHTML = genomes_to_str(parsed_json, genes);
     pup_element.appendChild(genomeoutput);
 
+    if (get_effect_value(effects, "extraGenomeRoll", false)) {
+      var extra_genes = breed_genomes(parsed_json, dad_genes, mom_genes);
+      var extra_genomeoutput = document.createElement("p");
+      extra_genomeoutput.innerHTML = "extra roll:<br>" + genomes_to_str(parsed_json, extra_genes);
+      pup_element.appendChild(extra_genomeoutput);
+    }
+
     var traitsoutput = document.createElement("p");
     traitsoutput.innerHTML = "Traits: " + breed_traits(parsed_json, dad_traits, mom_traits, is_male);
     pup_element.appendChild(traitsoutput);
