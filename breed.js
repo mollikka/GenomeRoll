@@ -144,6 +144,12 @@ function breed_statistics_test(parsed_json, dad_genome_input, mom_genome_input, 
   var gender_count_output = document.createElement("p");
   stat_output_element.appendChild(gender_count_output);
 
+  var male_trait_counts_output = document.createElement("p");
+  stat_output_element.appendChild(male_trait_counts_output);
+
+  var female_trait_counts_output = document.createElement("p");
+  stat_output_element.appendChild(female_trait_counts_output);
+
   var build_counts_output = document.createElement("p");
   stat_output_element.appendChild(build_counts_output);
 
@@ -152,13 +158,17 @@ function breed_statistics_test(parsed_json, dad_genome_input, mom_genome_input, 
   var repeat_count = 0;
   var pup_counts = {};
   var build_counts = {};
+  var male_trait_counts = {};
+  var female_trait_counts = {};
   var male_count = 0;
 
   var repeat = function() {
-    for (var i=0; i<1000000; i++) {
+    for (var i=0; i<1000; i++) {
       repeat_count += 1;
       var pup_count = breed_pupcount(effects);
       var build = breed_build(parsed_json, dad_build, mom_build);
+      var male_traits = breed_traits(parsed_json, dad_traits, mom_traits, true);
+      var female_traits = breed_traits(parsed_json, dad_traits, mom_traits, false);
 
       if (pup_count in pup_counts) {
         pup_counts[pup_count] += 1;
@@ -175,6 +185,24 @@ function breed_statistics_test(parsed_json, dad_genome_input, mom_genome_input, 
       if (breed_ismale(effects)) {
         male_count += 1;
       }
+
+      for (var j=0; j<male_traits.length; j++) {
+        var trait = male_traits[j];
+        if (trait in male_trait_counts) {
+          male_trait_counts[trait] += 1;
+        } else {
+          male_trait_counts[trait] = 1;
+        }
+      }
+
+      for (var j=0; j<female_traits.length; j++) {
+        var trait = female_traits[j];
+        if (trait in female_trait_counts) {
+          female_trait_counts[trait] += 1;
+        } else {
+          female_trait_counts[trait] = 1;
+        }
+      }
     }
 
     repeats_output.innerHTML = repeat_count.toString() + " repeats";
@@ -188,6 +216,16 @@ function breed_statistics_test(parsed_json, dad_genome_input, mom_genome_input, 
     build_counts_output.innerHTML = "BUILDS:<br>";
     for (var i in build_counts) {
       build_counts_output.innerHTML += i.toString() + ": " + build_counts[i]/repeat_count + "<br>";
+    }
+
+    male_trait_counts_output.innerHTML = "MALE TRAITS:<br>";
+    for (var i in male_trait_counts) {
+      male_trait_counts_output.innerHTML += i + ": " + male_trait_counts[i]/repeat_count + "<br>";
+    }
+
+    female_trait_counts_output.innerHTML = "FEMALE TRAITS:<br>";
+    for (var i in female_trait_counts) {
+      female_trait_counts_output.innerHTML += i + ": " + female_trait_counts[i]/repeat_count + "<br>";
     }
   };
   repeat();
