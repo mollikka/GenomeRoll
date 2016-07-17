@@ -384,11 +384,6 @@
       "requires": ["Masculine"],
       "type": "maleChance",
       "value": 0.75
-    },
-    {
-      "requires": ["Masculine"],
-      "type": "traitMutation",
-      "value": ["Masculine", 0.05]
     }
   ]
 }
