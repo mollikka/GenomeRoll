@@ -59,7 +59,6 @@ function str_to_gene(re_genes, re_genes_index, str) {
   var gene_name = re_genes[i][0];
   var re_gene = re_genes[i][1];
   var gene = str.match(re_gene);
-  console.log("Testing if",str,"is",gene_name," - ",!(gene === null));
   if (gene === null) {
     /*failed to identify the gene*/
     return null;
@@ -83,7 +82,6 @@ function verify_required(re_genes, genome) {
 }
 
 function str_to_genome(str, re_genes) {
-  console.log("PARSING GENOME",str);
   var genome = {};
   var re_geneseparator = /[ ]+/;
   var re_gene_index = 0; //remembers how many genes from the template (in order) have been tested so far
@@ -104,7 +102,6 @@ function str_to_genome(str, re_genes) {
     }
     if (gene === null) {
       /*wrong gene order, duplicates, or unknown genes*/
-      console.log("FAILED TO PARSE GENOME");
       return null;
     } else {
       genome[gene[0]] = [gene[1], gene[2]];
@@ -112,10 +109,8 @@ function str_to_genome(str, re_genes) {
   }
   if (!verify_required(re_genes, genome)) {
     /*a required gene is missing*/
-    console.log("REQUIRED GENE MISSING");
     return null;
   }
-  console.log("GENOME PARSED SUCCESSFULLY");
   return genome;
 }
 
@@ -174,7 +169,6 @@ function breed_genomes(parsed_json, dad_genes, mom_genes) {
       if (MG === undefined) MG = ["n", "n"];
       if (FG === undefined) FG = ["n", "n"];
 
-      console.log(MG, FG);
       var K1 = MG[Math.floor(Math.random() * 2)];
       var K2 = FG[Math.floor(Math.random() * 2)];
       kidgenome[gname] = [K1, K2];
