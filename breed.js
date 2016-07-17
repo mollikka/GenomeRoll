@@ -4,13 +4,13 @@ function setup_breed_button(parsed_json, dad_genome_input, mom_genome_input, dad
   button.value = "Make babies!";
 
   button.onclick = function() {
-    breed_one_pup(parsed_json, dad_genome_input, mom_genome_input, dad_traits_element, mom_traits_element, dad_build_element, mom_build_element, dad_stats_element, mom_stats_element, user_specials_element, output_element);
+    breed_pups(parsed_json, dad_genome_input, mom_genome_input, dad_traits_element, mom_traits_element, dad_build_element, mom_build_element, dad_stats_element, mom_stats_element, user_specials_element, output_element);
   };
 
   parent_element.appendChild(button);
 }
 
-function breed_one_pup(parsed_json, dad_genome_input, mom_genome_input, dad_traits_element, mom_traits_element, dad_build_element, mom_build_element, dad_stats_element, mom_stats_element, user_specials_element, pup_output_element) {
+function breed_pups(parsed_json, dad_genome_input, mom_genome_input, dad_traits_element, mom_traits_element, dad_build_element, mom_build_element, dad_stats_element, mom_stats_element, user_specials_element, pup_output_element) {
 
   var dad_genes = get_genomes_from_input(parsed_json, dad_genome_input);
   var dad_traits = get_traits_from_input(dad_traits_element);
