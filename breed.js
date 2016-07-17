@@ -84,3 +84,78 @@ function breed_pups(parsed_json, dad_genome_input, mom_genome_input, dad_traits_
   }
   pup_output_element.insertBefore(litter_element, pup_output_element.childNodes[0]);
 }
+
+function setup_stats_button(parsed_json, dad_genome_input, mom_genome_input, dad_traits_element, mom_traits_element, dad_build_element, mom_build_element, dad_stats_element, mom_stats_element, user_specials_element, parent_element, output_element) {
+  var button = document.createElement("input");
+  button.type = "button";
+  button.value = "Statistical average";
+
+  button.onclick = function() {
+    breed_statistics_test(parsed_json, dad_genome_input, mom_genome_input, dad_traits_element, mom_traits_element, dad_build_element, mom_build_element, dad_stats_element, mom_stats_element, user_specials_element, output_element);
+  };
+
+  parent_element.appendChild(button);
+}
+
+function breed_statistics_test(parsed_json, dad_genome_input, mom_genome_input, dad_traits_element, mom_traits_element, dad_build_element, mom_build_element, dad_stats_element, mom_stats_element, user_specials_element, pup_output_element) {
+
+  var dad_genes = get_genomes_from_input(parsed_json, dad_genome_input);
+  var dad_traits = get_traits_from_input(dad_traits_element);
+  var dad_build = dad_build_element.value;
+  var dad_stats = parse_stats(parsed_json, dad_stats_element.value);
+
+  var mom_genes = get_genomes_from_input(parsed_json, mom_genome_input);
+  var mom_traits = get_traits_from_input(mom_traits_element);
+  var mom_build = mom_build_element.value;
+  var mom_stats = parse_stats(parsed_json, mom_stats_element.value);
+
+  var specials = get_active_specials(parsed_json, dad_traits_element, mom_traits_element, user_specials_element);
+  var effects = specials_to_effects(parsed_json, specials);
+
+
+  var stat_output_element = document.createElement("div");
+  var label = document.createElement("h3");
+  label.innerHTML = "Statistics test";
+  stat_output_element.appendChild(label);
+
+  var removebutton = document.createElement("input");
+  removebutton.type = "button";
+  removebutton.value = "X";
+  removebutton.onclick = function() {
+    pup_output_element.removeChild(stat_output_element);
+  };
+  stat_output_element.appendChild(removebutton);
+
+  var pup_counts_output = document.createElement("p");
+  stat_output_element.appendChild(pup_counts_output);
+
+  var gender_count_output = document.createElement("p");
+  stat_output_element.appendChild(gender_count_output);
+
+  pup_output_element.insertBefore(stat_output_element, pup_output_element.childNodes[0]);
+
+  var repeat_count = 0;
+  var pup_counts = {};
+  var male_count = 0;
+
+  for (var i=0; i<1000000; i++) {
+    repeat_count += 1;
+    var pup_count = breed_pupcount(effects);
+
+    if (pup_count in pup_counts) {
+      pup_counts[pup_count] += 1;
+    } else {
+      pup_counts[pup_count] = 1;
+    }
+
+    if (breed_ismale(effects)) {
+      male_count += 1;
+    }
+  }
+
+  pup_counts_output.innerHTML = "PUPS:<br>";
+  for (var i in pup_counts) {
+    pup_counts_output.innerHTML += i.toString() + ": " + pup_counts[i]/repeat_count + "<br>";
+  }
+  gender_count_output.innerHTML = "MALE RATIO:<br>"+male_count/repeat_count;
+}
