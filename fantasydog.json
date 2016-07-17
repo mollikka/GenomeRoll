@@ -382,7 +382,7 @@
     },
     {
       "requires": ["Masculine"],
-      "type": "maleBalance",
+      "type": "maleChance",
       "value": 0.75
     },
     {
