@@ -104,11 +104,16 @@ function specials_to_effects(parsed_json, active_specials) {
   return active_effects;
 }
 
-function breed_ismale(active_effects) {
-  var male_chance = 0.5;
-  if ("maleChance" in active_effects) {
-    male_chance = active_effects.maleChance;
+function get_effect_value(active_effects, key, default_value) {
+  var value = default_value;
+  if (key in active_effects) {
+    value = active_effects[key];
   }
+  return value;
+}
+
+function breed_ismale(active_effects) {
+  var male_chance = get_effect_value(active_effects, "maleChance", 0.5);
   if (Math.random() < male_chance)
     return true;
   return false;
