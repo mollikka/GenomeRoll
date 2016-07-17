@@ -126,6 +126,18 @@ function breed_statistics_test(parsed_json, dad_genome_input, mom_genome_input, 
   };
   stat_output_element.appendChild(removebutton);
 
+  var repeatbutton = document.createElement("input");
+  repeatbutton.type = "button";
+  repeatbutton.value = "Repeat";
+  repeatbutton.onclick = function() {
+    repeat();
+  };
+  stat_output_element.appendChild(repeatbutton);
+
+
+  var repeats_output = document.createElement("p");
+  stat_output_element.appendChild(repeats_output);
+
   var pup_counts_output = document.createElement("p");
   stat_output_element.appendChild(pup_counts_output);
 
@@ -138,24 +150,29 @@ function breed_statistics_test(parsed_json, dad_genome_input, mom_genome_input, 
   var pup_counts = {};
   var male_count = 0;
 
-  for (var i=0; i<1000000; i++) {
-    repeat_count += 1;
-    var pup_count = breed_pupcount(effects);
+  var repeat = function() {
+    for (var i=0; i<1000000; i++) {
+      repeat_count += 1;
+      var pup_count = breed_pupcount(effects);
 
-    if (pup_count in pup_counts) {
-      pup_counts[pup_count] += 1;
-    } else {
-      pup_counts[pup_count] = 1;
+      if (pup_count in pup_counts) {
+        pup_counts[pup_count] += 1;
+      } else {
+        pup_counts[pup_count] = 1;
+      }
+
+      if (breed_ismale(effects)) {
+        male_count += 1;
+      }
     }
 
-    if (breed_ismale(effects)) {
-      male_count += 1;
-    }
-  }
+    repeats_output.innerHTML = repeat_count.toString() + " repeats";
 
-  pup_counts_output.innerHTML = "PUPS:<br>";
-  for (var i in pup_counts) {
-    pup_counts_output.innerHTML += i.toString() + ": " + pup_counts[i]/repeat_count + "<br>";
-  }
-  gender_count_output.innerHTML = "MALE RATIO:<br>"+male_count/repeat_count;
+    pup_counts_output.innerHTML = "PUPS:<br>";
+    for (var i in pup_counts) {
+      pup_counts_output.innerHTML += i.toString() + ": " + pup_counts[i]/repeat_count + "<br>";
+    }
+    gender_count_output.innerHTML = "MALE RATIO:<br>"+male_count/repeat_count;
+  };
+  repeat();
 }
