@@ -118,3 +118,15 @@ function breed_ismale(active_effects) {
     return true;
   return false;
 }
+
+function breed_pupcount(active_effects) {
+  var pup_chance = get_effect_value(active_effects, "offspringChance", [0, 1]);
+  var luck = Math.random();
+  var cumulative_chance = 0;
+  var count;
+  for (count=0; count<pup_chance.length; count++) {
+    cumulative_chance += pup_chance[count];
+    if (luck < cumulative_chance) break;
+  }
+  return count;
+}
