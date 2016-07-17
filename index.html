@@ -50,8 +50,7 @@
       var mom_s = setup_stats_input(parsed_json, mom_input);
 
       var spec = setup_special_options(parsed_json, special_options_input);
-
-      setup_breed_button(parsed_json, dad_g, mom_g, dad_t, mom_t, dad_b, mom_b, dad_s, mom_s, breeding_buttons, breeding_output);
+      setup_breed_button(parsed_json, dad_g, mom_g, dad_t, mom_t, dad_b, mom_b, dad_s, mom_s, spec, breeding_buttons, breeding_output);
       status_display.innerHTML = "Species data loaded!"
     }
     else if (request.readyState == 4) {

@@ -1,16 +1,17 @@
-function setup_breed_button(parsed_json, dad_genome_input, mom_genome_input, dad_traits_element, mom_traits_element, dad_build_element, mom_build_element, dad_stats_element, mom_stats_element, parent_element, output_element) {
+function setup_breed_button(parsed_json, dad_genome_input, mom_genome_input, dad_traits_element, mom_traits_element, dad_build_element, mom_build_element, dad_stats_element, mom_stats_element, user_specials_element, parent_element, output_element) {
   var button = document.createElement("input");
   button.type = "button";
   button.value = "Make a baby!";
 
   button.onclick = function() {
-    breed_one_pup(parsed_json, dad_genome_input, mom_genome_input, dad_traits_element, mom_traits_element, dad_build_element, mom_build_element, dad_stats_element, mom_stats_element, output_element);
+    console.log(user_specials_element);
+    breed_one_pup(parsed_json, dad_genome_input, mom_genome_input, dad_traits_element, mom_traits_element, dad_build_element, mom_build_element, dad_stats_element, mom_stats_element, user_specials_element, output_element);
   };
 
   parent_element.appendChild(button);
 }
 
-function breed_one_pup(parsed_json, dad_genome_input, mom_genome_input, dad_traits_element, mom_traits_element, dad_build_element, mom_build_element, dad_stats_element, mom_stats_element, pup_output_element) {
+function breed_one_pup(parsed_json, dad_genome_input, mom_genome_input, dad_traits_element, mom_traits_element, dad_build_element, mom_build_element, dad_stats_element, mom_stats_element, user_specials_element, pup_output_element) {
 
   var dad_genes = get_genomes_from_input(parsed_json, dad_genome_input);
   var dad_traits = get_traits_from_input(dad_traits_element);
@@ -21,6 +22,9 @@ function breed_one_pup(parsed_json, dad_genome_input, mom_genome_input, dad_trai
   var mom_traits = get_traits_from_input(mom_traits_element);
   var mom_build = mom_build_element.value;
   var mom_stats = parse_stats(parsed_json, mom_stats_element.value);
+
+  var specials = get_active_specials(parsed_json, dad_traits_element, mom_traits_element, user_specials_element);
+  var effects = specials_to_effects(parsed_json, specials);
 
   var pup_element = document.createElement("div");
   pup_element.className = "offspring";

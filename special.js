@@ -22,6 +22,7 @@ function setup_special_options(parsed_json, input_element) {
   }
 
   input_element.appendChild(container);
+  return container;
 }
 
 function get_active_effects(parsed_json, dad_traits_parent, mom_traits_parent, user_specials_parent) {
@@ -88,6 +89,31 @@ function get_active_effects(parsed_json, dad_traits_parent, mom_traits_parent, u
     }
   }
   return active_specials;
+}
+
+function specials_to_effects(parsed_json, active_specials) {
+
+  var active_effects = {};
+
+  var pass_requirements = function(active_specials, requirements) {
+    for (var i=0; i<requirements.length; i++) {
+      if (active_specials.indexOf(requirements[i])<0) {
+        return false;
+      }
+    }
+    return true;
+  };
+
+  var effectsdata = parsed_json.effects;
+  for (var key in effectsdata) {
+    var effecttype = effectsdata[key].type;
+    var requirements = effectsdata[key].requires;
+    var effectvalue = effectsdata[key].value;
+    if (!pass_requirements(active_specials, requirements)) continue;
+    active_effects[effecttype] = effectvalue;
+  }
+  console.log(active_effects);
+  return active_effects;
 }
 
 function breed_ismale() {
