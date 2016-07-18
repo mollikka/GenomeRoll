@@ -377,8 +377,8 @@
     },
     {
       "requires": ["Supreme"],
-      "type": "buildOverride",
-      "value": "S"
+      "type": "bestAvailableBuild",
+      "value": true
     },
     {
       "requires": ["Masculine"],
