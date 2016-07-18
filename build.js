@@ -64,7 +64,7 @@ function setup_stats_input(parsed_json, input_element) {
 function stats_to_str(stats) {
   strs = [];
   for (var key in stats) {
-    strs.push(key + ": " + stats[key].toFixed(2));
+    strs.push(key + ": " + stats[key].toFixed());
   }
   return strs.join(", ");
 }
