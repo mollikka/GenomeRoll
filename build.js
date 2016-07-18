@@ -49,14 +49,13 @@ function setup_stats_input(parsed_json, input_element) {
   input_element.appendChild(container);
 
   inputfield.oninput = function() {
-    if (this.value === "") {
-      this.className = "";
-    } else if (parse_stats(parsed_json, this.value)===null) {
+    if (parse_stats(parsed_json, this.value)===null) {
       this.className = "invalid_input";
     } else {
       this.className = "valid_input";
     }
   };
+  inputfield.oninput();
 
   return inputfield;
 }

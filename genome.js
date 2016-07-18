@@ -26,14 +26,13 @@ function setup_genome_input(parsed_json, input_element) {
 
 
     genome_input.oninput = function() {
-      if (this.value == "") {
-        this.className = "";
-      } else if (str_to_genome(this.value, this.re_genes)===null) {
+      if (str_to_genome(this.value, this.re_genes)===null) {
         this.className = "invalid_input";
       } else {
         this.className = "valid_input";
       }
     }
+    genome_input.oninput();
   }
   input_element.appendChild(input_container);
   return input_container;
