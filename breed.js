@@ -71,13 +71,13 @@ function breed_pups(parsed_json, dad_genome_input, mom_genome_input, dad_traits_
     traitsoutput.innerHTML = "Traits: " + breed_traits(parsed_json, dad_traits, mom_traits, is_male);
     pup_element.appendChild(traitsoutput);
 
-    var build = breed_build(parsed_json, dad_build, mom_build);
+    var build = breed_build(parsed_json, dad_build, mom_build, effects);
     var buildoutput = document.createElement("p");
     buildoutput.innerHTML = "Build: " + build;
     pup_element.appendChild(buildoutput);
 
     var statsoutput = document.createElement("p");
-    statsoutput.innerHTML = "Stats: " + stats_to_str(calculate_pup_stats(parsed_json, dad_stats, mom_stats, build, effects));
+    statsoutput.innerHTML = "Stats: " + stats_to_str(calculate_pup_stats(parsed_json, dad_stats, mom_stats, build));
     pup_element.appendChild(statsoutput);
 
     litter_element.appendChild(pup_element);
@@ -166,7 +166,7 @@ function breed_statistics_test(parsed_json, dad_genome_input, mom_genome_input, 
     for (var i=0; i<1000; i++) {
       repeat_count += 1;
       var pup_count = breed_pupcount(effects);
-      var build = breed_build(parsed_json, dad_build, mom_build);
+      var build = breed_build(parsed_json, dad_build, mom_build, effects);
       var male_traits = breed_traits(parsed_json, dad_traits, mom_traits, true);
       var female_traits = breed_traits(parsed_json, dad_traits, mom_traits, false);
 

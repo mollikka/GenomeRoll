@@ -69,12 +69,11 @@ function stats_to_str(stats) {
   return strs.join(", ");
 }
 
-function calculate_pup_stats(parsed_json, dad_stats, mom_stats, kid_build, active_effects) {
-  var build = get_effect_value(active_effects, "buildOverride", kid_build);
+function calculate_pup_stats(parsed_json, dad_stats, mom_stats, kid_build) {
   var stats = {};
   for (var i=0; i<parsed_json.build.stats.length; i++) {
     var key = parsed_json.build.stats[i];
-    stats[key] = (dad_stats[key] + mom_stats[key])/parsed_json.build.modifiers[build];
+    stats[key] = (dad_stats[key] + mom_stats[key])/parsed_json.build.modifiers[kid_build];
   }
   return stats;
 }
@@ -89,9 +88,15 @@ function get_pup_build_choices(parsed_json, dad_build, mom_build) {
   }
 }
 
-function breed_build(parsed_json, dad_build, mom_build) {
+function breed_build(parsed_json, dad_build, mom_build, active_effects) {
+  var use_best_possible = get_effect_value(active_effects, "bestAvailableBuild", false);
 
   var possible_builds = get_pup_build_choices(parsed_json, dad_build, mom_build);
 
-  return possible_builds[Math.floor(Math.random() * possible_builds.length)];
+  if (use_best_possible) {
+    return possible_builds.slice(0).sort(function(a, b) {
+      return parsed_json.build.modifiers[a] - parsed_json.build.modifiers[b];})[0];
+  } else {
+    return possible_builds[Math.floor(Math.random() * possible_builds.length)];
+  }
 }
