@@ -25,8 +25,7 @@ function setup_special_options(parsed_json, input_element) {
   return container;
 }
 
-function get_active_specials(parsed_json, dad_traits_element, mom_traits_element, user_specials_element) {
-
+function get_user_specials(parsed_json, dad_traits_element, mom_traits_element, user_specials_element) {
   var mom_traits = get_traits_from_input(mom_traits_element);
   var dad_traits = get_traits_from_input(dad_traits_element);
   var chosen_specials = [];
@@ -61,6 +60,13 @@ function get_active_specials(parsed_json, dad_traits_element, mom_traits_element
       }
     }
   }
+  return maybe_active_specials;
+}
+
+function get_active_specials(parsed_json, dad_traits_element, mom_traits_element, user_specials_element) {
+
+  var maybe_active_specials = get_user_specials(parsed_json, dad_traits_element, mom_traits_element, user_specials_element);
+  var specialsdata = parsed_json.special;
 
   /*go through active specials again to see if there are conflicts*/
   var active_specials = maybe_active_specials.slice();
