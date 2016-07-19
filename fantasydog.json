@@ -280,6 +280,7 @@
     },
     "Doubleprime": {
       "disabledwith": [
+        "Prime",
         "Group"
       ],
       "activation": ["option"]
@@ -302,6 +303,7 @@
     },
     "Pheromone Boost": {
       "disabledwith": [
+        "Shady Pheromone Boost",
         "Group"
       ],
       "activation": ["option"]
