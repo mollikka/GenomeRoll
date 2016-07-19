@@ -106,7 +106,6 @@ function specials_to_effects(parsed_json, active_specials) {
     if (!pass_requirements(active_specials, requirements)) continue;
     active_effects[effecttype] = effectvalue;
   }
-  console.log(active_effects);
   return active_effects;
 }
 
