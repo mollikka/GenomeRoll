@@ -1,15 +1,18 @@
-function setup_special_options(parsed_json, input_element) {
-  var special = parsed_json.special;
+function setup_special_options(parsed_json, dad_traits_element, mom_traits_element, input_element) {
+  var specialsdata = parsed_json.special;
   var container = document.createElement("div");
   container.className = "input_container";
 
   var checkbox_list = document.createElement("ul");
   container.appendChild(checkbox_list);
 
-  for (var key in special) {
-    if (special[key].activation[0] != "option") continue;
+  var specialelements = {};
+
+  for (var key in specialsdata) {
+    if (specialsdata[key].activation[0] != "option") continue;
 
     var listitem = document.createElement("li");
+    specialelements[key] = listitem;
     checkbox_list.appendChild(listitem);
 
     var checkbox = document.createElement("input");
@@ -19,6 +22,33 @@ function setup_special_options(parsed_json, input_element) {
 
     var label = document.createTextNode(key);
     listitem.appendChild(label);
+  }
+
+
+  var update = function() {
+
+    for (var key in specialelements) {
+      specialelements[key].className = "";
+    }
+
+    for (var key in specialelements) {
+      var special = key;
+      var element = specialelements[key];
+
+      var maybe_active_specials = get_user_specials(parsed_json, dad_traits_element, mom_traits_element, input_element);
+
+      var conflicts = specialsdata[special].disabledwith;
+      for (var j=0; j<conflicts.length; j++) {
+        if (maybe_active_specials.indexOf(conflicts[j]) > -1) {
+          element.className = "invalid_option";
+          break;
+        }
+      }
+    }
+  };
+
+  for (var key in specialelements) {
+    specialelements[key].onclick = update;
   }
 
   input_element.appendChild(container);
