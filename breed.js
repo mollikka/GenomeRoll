@@ -29,17 +29,19 @@ function breed_pups(parsed_json, dad_genome_input, mom_genome_input, dad_traits_
 
 
   var litter_element = document.createElement("div");
-  var label = document.createElement("h3");
-  label.innerHTML = "Litter";
-  litter_element.appendChild(label);
 
   var removebutton = document.createElement("input");
   removebutton.type = "button";
   removebutton.value = "X";
+  removebutton.className = "removebutton";
   removebutton.onclick = function() {
     pup_output_element.removeChild(litter_element);
   };
   litter_element.appendChild(removebutton);
+
+  var label = document.createElement("h3");
+  label.innerHTML = "Litter";
+  litter_element.appendChild(label);
 
   for (var pup=0; pup<pup_count; pup++) {
     var pup_element = document.createElement("div");
@@ -113,18 +115,20 @@ function breed_statistics_test(parsed_json, dad_genome_input, mom_genome_input, 
   var effects = specials_to_effects(parsed_json, specials);
 
 
-  var stat_output_element = document.createElement("div");
-  var label = document.createElement("h3");
-  label.innerHTML = "Statistics test";
-  stat_output_element.appendChild(label);
+  var stat_output_p = document.createElement("div");
 
   var removebutton = document.createElement("input");
   removebutton.type = "button";
   removebutton.value = "X";
+  removebutton.className = "removebutton";
   removebutton.onclick = function() {
-    pup_output_element.removeChild(stat_output_element);
+    pup_output_element.removeChild(stat_output_p);
   };
-  stat_output_element.appendChild(removebutton);
+  stat_output_p.appendChild(removebutton);
+
+  var label = document.createElement("h3");
+  label.innerHTML = "Statistics test";
+  stat_output_p.appendChild(label);
 
   var repeatbutton = document.createElement("input");
   repeatbutton.type = "button";
@@ -132,8 +136,11 @@ function breed_statistics_test(parsed_json, dad_genome_input, mom_genome_input, 
   repeatbutton.onclick = function() {
     repeat();
   };
-  stat_output_element.appendChild(repeatbutton);
+  stat_output_p.appendChild(repeatbutton);
 
+  var stat_output_element = document.createElement("div");
+  stat_output_element.className = "offspring";
+  stat_output_p.appendChild(stat_output_element);
 
   var repeats_output = document.createElement("p");
   stat_output_element.appendChild(repeats_output);
@@ -153,7 +160,7 @@ function breed_statistics_test(parsed_json, dad_genome_input, mom_genome_input, 
   var build_counts_output = document.createElement("p");
   stat_output_element.appendChild(build_counts_output);
 
-  pup_output_element.insertBefore(stat_output_element, pup_output_element.childNodes[0]);
+  pup_output_element.insertBefore(stat_output_p, pup_output_element.childNodes[0]);
 
   var repeat_count = 0;
   var pup_counts = {};

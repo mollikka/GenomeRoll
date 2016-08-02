@@ -2,17 +2,31 @@
   float:left;
   width: 50%;
 }
+#status_display {
+  padding: 10px;
+  border-radius: 3px;
+  background-color: orange;
+}
+.removebutton {
+  float: right;
+}
 .input_container {
   border-style: solid;
+  border-color: rgb(170, 170, 170);
+  background-color: rgb(230, 230, 230);
+  border-radius: 10px;
 }
 .valid_input {
-  background-color: green;
+  background-color: rgb(130,255,130);
 }
 .invalid_input {
-  background-color: red;
+  background-color: rgb(255,130,130);
 }
 .offspring {
   border-style: solid;
+  border-color: rgb(200, 160, 255);
+  background-color: rgb(230, 200, 255);
+  border-radius: 10px;
 }
 .invalid_option {
   text-decoration: line-through;
