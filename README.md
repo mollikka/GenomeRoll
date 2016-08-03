@@ -9,6 +9,9 @@ permission, as it is proprietary to the original client.
 Learn from them and write your own configuration or ask me
 for help.
 
+##Try it
+[Try a live demo here!](https://mollikka.github.io/GenomeRoll/)
+
 ##Configuration
 
 The breeding system is defined in a single JSON file
