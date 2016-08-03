@@ -182,3 +182,10 @@ Finally, the actual effect the special options have is defined in the "effects" 
 
 ####Notes
 * The system prefers effects that come later in the list. Put default values first in the list, and the ones that trump everything else in the end.
+
+##Deployment
+
+To get your very own genome blender running, just copy all the files in the
+[gh-pages branch] (https://github.com/mollikka/GenomeRoll/tree/gh-pages)
+to your server and edit the JSON file to fit your needs. The thing doesn't use
+any external libraries, so all you need is a working web server and a browser.
