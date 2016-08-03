@@ -64,7 +64,7 @@ The child's build modifier is determined by parents' modifiers. In the "inherita
 * In the current version, at least one status name must exist.
 * Every combination of two build modifiers must have a corresponding list entry in "inheritance". The key can be "SA" or "AS" for a case where parents have builds "S" and "A". Don't define both at once, though.
 
-##Genotypes
+###Genotypes
 
 Genotypes are the meat and bones of breeding (they're in it's DNA!). The genes are organized into groups. You could have just one group called "Genome" or you could have a bunch.
 In this example there are two gene groups, "color" and "face".
