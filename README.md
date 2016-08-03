@@ -123,3 +123,62 @@ Trait name is defined by their dict key. Traits also have other variables: "male
 
 ####Notes
 * Defining zero traits should be fine. Just leave the "traits" dict empty (`"traits": {}`)
+
+###Special effects
+
+Special effects are extra things the user can activate to affect the results. "special" section in the JSON defines the choices the user can make. This example defines two mutually exclusive options:
+```json
+"special": {
+    "Prime": {
+      "disabledwith": [
+        "Doubleprime",
+      ],
+      "activation": ["option"]
+    },
+    "Doubleprime": {
+      "disabledwith": [
+        "Prime",
+      ],
+      "activation": ["option"]
+    },
+  },
+```
+Possible values for "activation" are `["option"]` (Give user explicit checkbox for this)
+and `["trait",Traitname]` (Activate this option by choosing a specific parental trait - Doesn't matter if both parents or just one parent has it))
+
+Finally, the actual effect the special options have is defined in the "effects" section of the JSON. An effect has a list of required specials (if empty, the effect is active by default), a type (check the list below for available types) and a value (specific to each type). Here's an example:
+
+```json
+  "effects": [
+    {
+      "requires": [],
+      "type": "offspringChance",
+      "value": [0, 0.25, 0.25, 0.25, 0.25]
+    },
+    {
+      "requires": [],
+      "type": "maleChance",
+      "value": 0.5
+    },
+    {
+      "requires": ["Prime"],
+      "type": "offspringChance",
+      "value": [0, 0, 0.3333, 0.3333, 0.3334]
+    },
+    {
+      "requires": ["Doubleprime"],
+      "type": "offspringChance",
+      "value": [0, 0, 0, 0.5, 0.5]
+    }
+  ]
+```
+
+####Special effect types
+|Type              |Description                                         |Values                                 |Default |
+|------------------|----------------------------------------------------|----------------------                 |--------|
+|maleChance        |Chance that a baby is male                          |Numerical value 0 to 1                 |0.5     |
+|offspringChance   |Chance that a litter has a specific amount of babies|List of numerical values adding up to 1 (first value for 0 babies, second for 1, 3rd for 2...)|[0, 1.0]|
+|bestAvailableBuild|Always choose the build that gives the best stats   |true or false|false|
+
+####Notes
+* The system prefers effects that come later in the list. Put default values first in the list, and the ones that trump everything else in the end.
