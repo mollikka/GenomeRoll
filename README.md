@@ -63,3 +63,37 @@ The child's build modifier is determined by parents' modifiers. In the "inherita
 * In the current version, at least one modifier must exist. (Tell me if you need to change this!)
 * In the current version, at least one status name must exist.
 * Every combination of two build modifiers must have a corresponding list entry in "inheritance". The key can be "SA" or "AS" for a case where parents have builds "S" and "A". Don't define both at once, though.
+
+##Genotypes
+
+Genotypes are the meat and bones of breeding (they're in it's DNA!). The genes are organized into groups. You could have just one group called "Genome" or you could have a bunch.
+In this example there are two gene groups, "color" and "face".
+
+```json
+"genotypes": {
+   "color": {
+      "Extension": {
+        "required": true,
+        "genotypes": ["E","e"]},
+      "Agouti": {
+        "required": true,
+        "genotypes": ["A","Ay","Ad","At","a"]},
+    },
+    "face": {
+      "Nose length": {
+        "required": true,
+        "genotypes": ["No", "Ny"]},
+      "Freckles": {
+        "required": false,
+        "genotypes": ["Fr", "n"]},
+  },
+}
+```
+
+As in the example, a gene is defined by a dict key (the name of the gene), a list of possible genotypes, and whether or not that gene is "required". Required means that it *must* be explicitly visible in the written genome. Basically it's a good idea to set required as false if there's a chance this gene is empty (= "nn"). When reading user input strings, any implicit genotypes are assumed to be empty.
+
+####Notes
+
+* In the current version, there must be at least one gene group.
+* A gene group must have at least one defined gene.
+* To be safe, make sure there's no chance of confusion when reading genes. For example, having a required gene with the genotype "n" is probably a bad idea.
