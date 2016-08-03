@@ -97,3 +97,26 @@ As in the example, a gene is defined by a dict key (the name of the gene), a lis
 * In the current version, there must be at least one gene group.
 * A gene group must have at least one defined gene.
 * To be safe, make sure there's no chance of confusion when reading genes. For example, having a required gene with the genotype "n" is probably a bad idea.
+
+###Traits
+
+Traits are random things creatures can have. They're kind of like genes, but they support mutation. Here's a possible list of traits:
+
+```json
+  "traits": {
+    "Agile": {
+      "male": true,
+      "female": true,
+      "inherit": 0.5,
+      "mutate": 0
+    },
+    "Nosy": {
+      "male": true,
+      "female": true,
+      "inherit": 0.3,
+      "mutate": 0
+    }
+  }
+```
+
+Trait name is defined by their dict key. Traits also have other variables: "male" and "female" define whether a specific gender can have this trait (affects what the user can input and what offspring can inherit and mutate). "inherit" is a chance a child would receive this trait if their parent has it (out of 1). If both parents have it, the chance is effectively calculated twice. "mutate" is a chance a child can receive this trait independently without getting it from their parents.
