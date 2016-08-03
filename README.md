@@ -70,7 +70,7 @@ Genotypes are the meat and bones of breeding (they're in it's DNA!). The genes a
 In this example there are two gene groups, "color" and "face".
 
 ```json
-"genotypes": {
+  "genotypes": {
    "color": {
       "Extension": {
         "required": true,
@@ -86,8 +86,8 @@ In this example there are two gene groups, "color" and "face".
       "Freckles": {
         "required": false,
         "genotypes": ["Fr", "n"]},
-  },
-}
+    },
+  }
 ```
 
 As in the example, a gene is defined by a dict key (the name of the gene), a list of possible genotypes, and whether or not that gene is "required". Required means that it *must* be explicitly visible in the written genome. Basically it's a good idea to set required as false if there's a chance this gene is empty (= "nn"). When reading user input strings, any implicit genotypes are assumed to be empty.
