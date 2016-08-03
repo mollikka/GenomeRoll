@@ -58,3 +58,8 @@ Relevant numerical status attributes are defined in the build category. For exam
 Modifiers are creature-specific things, that affect how offspring inherits status attributes. Offspring_status = (Mom_status + Dad Status)/Offspring_modifier
 
 The child's build modifier is determined by parents' modifiers. In the "inheritance" dict, parents' build modifiers correspond to a list of possible offspring builds (chosen randomly).
+
+####Notes
+* In the current version, at least one modifier must exist. (Tell me if you need to change this!)
+* In the current version, at least one status name must exist.
+* Every combination of two build modifiers must have a corresponding list entry in "inheritance". The key can be "SA" or "AS" for a case where parents have builds "S" and "A". Don't define both at once, though.
