@@ -120,3 +120,6 @@ Traits are random things creatures can have. They're kind of like genes, but the
 ```
 
 Trait name is defined by their dict key. Traits also have other variables: "male" and "female" define whether a specific gender can have this trait (affects what the user can input and what offspring can inherit and mutate). "inherit" is a chance a child would receive this trait if their parent has it (out of 1). If both parents have it, the chance is effectively calculated twice. "mutate" is a chance a child can receive this trait independently without getting it from their parents.
+
+NOTES:
+* Defining zero traits should be fine. Just leave the "traits" dict empty (`"traits": {}`)
