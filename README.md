@@ -37,7 +37,7 @@ Relevant numerical status attributes are defined in the build category. For exam
  "build": {
     "stats": [
       "Flying",
-      "Philosophy
+      "Philosophy"
     ],
     "modifiers": {
       "S": 1.5,
